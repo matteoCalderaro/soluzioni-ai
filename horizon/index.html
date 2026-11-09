@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Horizon – Pagina completa – Variante 02</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Syne:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+
+body{margin:0;background:#1A1A1A}
+a{color:inherit}a:hover{color:#E42931}
+.pg{--red:#E42931;--ink:#E3F4F8;--soft:#B9C3C6;--muted:#8A8A8A;--dk:#404040;--dks:#5C5C5C;background:#1A1A1A;color:#E3F4F8;font-family:"Poppins","Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;position:relative;overflow-x:clip;width:100%}
+.pg *,.pg *::before,.pg *::after{box-sizing:border-box}
+.pg button{font:inherit;color:inherit}
+.pg :focus-visible{outline:2px solid #E42931;outline-offset:3px}
+.in{width:100%;max-width:1840px;margin:0 auto;padding:0 clamp(20px,2.8vw,56px)}
+.h-exo{font-family:"Exo 2","Trebuchet MS",Arial,sans-serif}
+/* header */
+.hwrap{position:sticky;top:0;height:0;z-index:60}
+.hdr{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:min(1217px,calc(100% - 32px));height:84px;background:#2E2E2E;border:1px solid #E42931;border-radius:100px;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 16px}
+.logo{display:block;height:50px;text-decoration:none}
+.logo svg{height:100%;width:auto;display:block}
+.nav{display:flex;align-items:center;gap:30px;list-style:none;margin:0;padding:0}
+.nav>li{position:static}
+.navbtn{background:none;border:0;padding:12px 0;display:flex;align-items:center;gap:6px;cursor:pointer;font:500 15px/1 "Poppins",Arial,sans-serif;color:#E3F4F8;white-space:nowrap;text-decoration:none}
+.navbtn:hover,.navbtn.on{color:#E42931}
+.mega{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:min(680px,calc(100vw - 32px));background:#2B2B2B;border:1px solid #3a3a3a;border-radius:30px;padding:26px 30px 28px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.mega::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
+.mega-t{font:700 14px/1.2 "Exo 2",Arial,sans-serif;color:#E42931;text-transform:uppercase;letter-spacing:.04em;margin:0 0 6px}
+.mega-s{font:400 14px/1.5 "Poppins",Arial,sans-serif;color:#B9C3C6;margin:0 0 16px;padding-bottom:16px;border-bottom:1px solid #444}
+.mega-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.mega-item{background:none;border:0;border-radius:14px;padding:10px 8px;font:400 14px/1.3 "Poppins",Arial,sans-serif;color:#E3F4F8;text-align:center;cursor:pointer}
+.mega-item:hover{background:#353535}
+.mega-item i{display:block;width:34px;height:34px;border-radius:10px;margin:0 auto 8px;background:linear-gradient(160deg,#f0a0a4,#E42931 70%);opacity:.85}
+.mega-cta{margin-top:18px;display:flex;justify-content:center}
+.ghost-s{display:inline-flex;align-items:center;gap:10px;border:1px solid #E42931;border-radius:94px;background:transparent;padding:9px 40px;font:600 15px/1 "Poppins",Arial,sans-serif;color:#fff;cursor:pointer}
+.ghost-s svg{color:#E42931}
+.tp-p{display:flex;flex-wrap:wrap;gap:6px 22px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #444}
+.tp-c{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:6px}
+.tp-c h5{margin:0 0 8px;font:600 13px/1.2 "Poppins",Arial,sans-serif;color:#fff}
+.lnk{display:block;background:none;border:0;padding:4px 0;font:400 13px/1.4 "Poppins",Arial,sans-serif;color:#B9C3C6;cursor:pointer;text-align:left}
+.sol-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.sol{background:#343434;border:1px solid transparent;border-radius:20px;padding:16px;text-align:left;display:flex;flex-direction:column;gap:10px;min-height:150px;text-decoration:none;color:#fff}
+.sol:hover,.sol.cur{border-color:#E42931;color:#fff}
+.sol .mk{height:44px;display:flex;align-items:center}
+.sol .mk img{height:40px;width:auto;border-radius:10px;display:block}
+.sol .mk.lt img{background:#fff;padding:3px 8px}
+.sol b{font:700 19px/1.1 "Exo 2",Arial,sans-serif;color:#fff}
+.sol span.l{font:400 13px/1.4 "Poppins",Arial,sans-serif;color:#B9C3C6}
+.sol.off{opacity:.55}.sol.off:hover{border-color:transparent}
+.kapa{font:800 26px/1 "Exo 2",Arial,sans-serif;color:#cfcfcf}
+.soon{align-self:flex-start;font:500 11px/1 "Poppins",Arial,sans-serif;color:#E3F4F8;border:1px dashed #777;border-radius:20px;padding:5px 9px}
+/* common */
+.pill{display:inline-flex;align-items:center;gap:10px;background:#3A3A3A;border-radius:94px;padding:8px 20px;font:500 17px/1.2 "Poppins",Arial,sans-serif;color:#fff}
+.pill::before{content:"";width:9px;height:9px;border-radius:50%;background:#E42931}
+.h2{font:900 clamp(30px,3.2vw,53px)/1.08 "Exo 2",Arial,sans-serif;color:#E3F4F8;margin:18px 0 0;text-wrap:balance}
+.h2 em{font-style:normal;color:#E42931}
+.h2.dk{color:#404040;font-weight:700;font-size:clamp(26px,2.6vw,40px)}
+.lead{font:400 17px/1.65 "Poppins",Arial,sans-serif;color:#B9C3C6;max-width:64ch;margin:14px 0 0}
+.lead.dk{color:#5C5C5C}
+.sec{padding:clamp(80px,8vw,130px) 0 0}
+.shead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px clamp(40px,6vw,120px);align-items:end}
+.shead .lead{margin:0;max-width:62ch}
+.panel{margin:0 clamp(10px,2vw,30px);border-radius:32px;background:#F8F8F8;color:#404040;padding:clamp(48px,5.5vw,96px) 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;border-radius:94px;font:600 15px/1.1 "Syne","Poppins",Arial,sans-serif;text-transform:uppercase;cursor:pointer;text-decoration:none;min-height:54px;padding:17px 30px}
+.btn-r{background:#E42931;color:#fff;border:2px solid transparent}.btn-r:hover{background:#cf2129;color:#fff}
+.btn-o{background:#242424;color:#E3F4F8;border:1px solid #E42931}.btn-o:hover{background:#2c2c2c;color:#fff}
+.frame{position:relative;background:#fff;border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,.08);box-shadow:0 28px 70px rgba(0,0,0,.45)}
+.frame.flat{box-shadow:0 10px 30px rgba(0,0,0,.08);border-color:#e4e4e4}
+.fr-pad{display:flex;align-items:flex-start}
+.chip{display:inline-flex;align-items:center;gap:6px;font:500 13px/1 "Poppins",Arial,sans-serif;border-radius:40px;padding:8px 13px;background:#EDEDED;color:#404040}
+/* hero */
+.hero{position:relative;padding:168px 0 88px;background:radial-gradient(ellipse 55% 70% at 74% 42%,rgba(190,34,50,.55),transparent 70%),radial-gradient(ellipse 40% 45% at 0% 100%,rgba(190,34,50,.22),transparent 70%),linear-gradient(180deg,#221416 0%,#1A1A1A 100%)}
+.hero-g{display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);gap:clamp(40px,4.5vw,96px);align-items:center}
+.crumbs{font:400 14px/1 "Poppins",Arial,sans-serif;color:#B9C3C6;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.crumbs b{font-weight:400;color:#fff}
+.h1{font:800 clamp(38px,3.6vw,64px)/1.05 "Exo 2",Arial,sans-serif;margin:20px 0 0;text-wrap:balance}
+.h1 span{display:block}.h1 .r{color:#E42931}.h1 .w{color:#fff}
+.claim{font:600 clamp(20px,1.7vw,26px)/1.25 "Exo 2",Arial,sans-serif;color:#fff;margin:16px 0 0}
+.hdesc{font:400 17px/1.6 "Poppins",Arial,sans-serif;color:#B9C3C6;margin:16px 0 0;max-width:60ch}
+.caps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:30px 0 0;border-top:1px solid #4a3336;border-bottom:1px solid #4a3336}
+.cap{padding:16px 14px 16px 0}
+.cap+.cap{padding-left:16px;border-left:1px solid #3a2a2c;position:relative}
+.caps.chain .cap+.cap::before{content:"";position:absolute;left:-7px;top:24px;width:12px;height:12px;border-radius:50%;background:#1f1517;border:2px solid #E42931;box-sizing:border-box}
+.cap .ci{color:#E42931;display:block;margin-bottom:8px}
+.cap b{display:block;font:700 17px/1.1 "Exo 2",Arial,sans-serif;color:#fff}
+.cap small{display:block;font:400 12.5px/1.4 "Poppins",Arial,sans-serif;color:#B9C3C6;margin-top:5px}
+.cap.tr b::after{content:"";display:inline-block;width:18px;border-top:2px dashed #E42931;vertical-align:middle;margin-left:6px}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.hv{position:relative}
+.pin{position:absolute;display:inline-flex;align-items:center;gap:8px;background:#E42931;color:#fff;font:600 12.5px/1 "Poppins",Arial,sans-serif;border-radius:40px;padding:8px 13px;box-shadow:0 8px 20px rgba(0,0,0,.35);white-space:nowrap;z-index:3}
+.pin::before{content:"";width:7px;height:7px;border-radius:50%;background:#fff}
+.hv-h{padding:0 0 92px}
+.hv-h .wf{position:absolute;left:-36px;bottom:0;width:58%;border:4px solid #fff;border-radius:14px}
+.hv-i .rda{position:absolute;right:-16px;top:-40px;width:44%;border-radius:12px}
+.tcard{position:relative;margin:-38px 24px 0 34px;background:#242424;border:1px solid #3a3a3a;border-radius:22px;padding:18px 20px 16px;box-shadow:0 24px 50px rgba(0,0,0,.5);z-index:2}
+.thread{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.thread::before{content:"";position:absolute;left:10%;right:10%;top:15px;height:3px;background:#E42931;border-radius:3px}
+.tn{position:relative;text-align:center;padding:0 4px}
+.tn i{display:flex;width:32px;height:32px;margin:0 auto;border-radius:50%;background:#E42931;color:#fff;font:700 14px/32px "Exo 2",Arial,sans-serif;font-style:normal;justify-content:center;box-shadow:0 0 0 5px #242424}
+.tn span{display:block;font:500 12px/1.3 "Poppins",Arial,sans-serif;color:#E3F4F8;margin-top:9px}
+.band{margin-top:14px;border:1px dashed rgba(228,41,49,.75);background:rgba(228,41,49,.08);border-radius:40px;padding:8px 16px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;font:500 12.5px/1.3 "Poppins",Arial,sans-serif;color:#E3F4F8}
+.band b{font-family:"Exo 2",Arial,sans-serif;font-weight:700;color:#fff}
+.resm{display:inline-flex;align-items:center;gap:6px;font:600 11.5px/1 "Poppins",Arial,sans-serif;color:#fff;background:#E42931;border-radius:30px;padding:5px 10px}
+/* problem */
+.prob-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:52px;border-top:1px solid #333}
+.prob{padding:34px clamp(20px,2.4vw,44px) 8px}
+.prob:first-child{padding-left:0}
+.prob+.prob{border-left:1px solid #333}
+.prob .p{display:flex;gap:12px;align-items:flex-start;font:700 21px/1.3 "Exo 2",Arial,sans-serif;color:#E3F4F8}
+.prob .p svg{flex:none;color:#8a8a8a;margin-top:3px}
+.prob .ar{height:1px;background:#3a3a3a;margin:22px 0;position:relative}
+.prob .ar::after{content:"";position:absolute;left:0;top:-3px;width:7px;height:7px;border-radius:50%;background:#E42931}
+.prob .lb{font:600 12px/1 "Poppins",Arial,sans-serif;color:#E42931;margin-bottom:8px}
+.prob .s{display:flex;gap:12px;font:400 16px/1.6 "Poppins",Arial,sans-serif;color:#B9C3C6}
+.prob .s svg{flex:none;color:#E42931;margin-top:2px}
+/* how */
+.modes{margin-top:44px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) minmax(0,.9fr);gap:16px;align-items:stretch}
+.mcard{display:flex;flex-direction:column;gap:12px;text-align:left;background:#242424;border:1px solid #363636;border-radius:24px;padding:20px 22px;cursor:pointer;color:#E3F4F8}
+.mcard:hover{border-color:#6a2a2e}
+.mcard.on{border-color:#E42931;background:#2a2023}
+.mcard .mh{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.mcard .mh b{font:700 20px/1.1 "Exo 2",Arial,sans-serif;color:#fff}
+.mcard .rd{width:20px;height:20px;border-radius:50%;border:2px solid #666;flex:none}
+.mcard.on .rd{border:6px solid #E42931;background:#fff}
+.mcard .mn{font:400 14px/1.5 "Poppins",Arial,sans-serif;color:#B9C3C6;margin:0}
+.mproof{background:#242424;border:1px solid #363636;border-radius:24px;padding:18px 20px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.mproof small{font:500 12px/1.3 "Poppins",Arial,sans-serif;color:#9a9a9a}
+.mproof .frame{border-radius:10px;box-shadow:none}
+.seg{display:inline-flex;background:#2E2E2E;border-radius:60px;padding:5px;gap:4px}
+.seg button{border:0;background:transparent;border-radius:60px;padding:11px 20px;cursor:pointer;font:600 14px/1 "Poppins",Arial,sans-serif;color:#B9C3C6;min-height:44px}
+.seg button.on{background:#E42931;color:#fff}
+.seq{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.seq .chip{font-size:12.5px;padding:7px 11px}
+.seq .chip{background:#333;color:#fff}
+.sar{color:#E42931;display:inline-flex}
+.mnote{grid-column:1/-1;font:400 14px/1.5 "Poppins",Arial,sans-serif;color:#B9C3C6;margin:0}
+.proof{grid-column:1/-1;display:flex;align-items:center;gap:14px}
+.proof small{font:500 12px/1.3 "Poppins",Arial,sans-serif;color:#8A8A8A;flex:none}
+.proof .frame{flex:1;border-radius:10px;box-shadow:none}
+.track{position:relative;display:grid;margin-top:44px}
+.track.ti .tline{background:#E42931;height:4px}
+.ticks{display:grid;margin-top:6px}
+.ticks span{justify-self:center;width:0;height:22px;border-left:2px dashed rgba(228,41,49,.7)}
+.tband{grid-column:1/-1}
+.track.ti .step .n{background:#1A1A1A;border-color:#E42931;color:#fff}
+.track.ti .step.on .n{background:#E42931;transform:scale(1.12)}
+.trlbl{font:500 13px/1 "Poppins",Arial,sans-serif;color:#B9C3C6;margin-top:30px;display:flex;align-items:center;gap:10px}
+.trlbl b{color:#fff;font-weight:600}
+.tline{position:absolute;top:27px;height:3px;background:#444;border-radius:3px}
+.tline.on{background:#E42931}
+.step{position:relative;background:none;border:0;cursor:pointer;padding:0 8px;text-align:center;color:#E3F4F8;align-self:start;display:flex;flex-direction:column;align-items:center}
+.step .n{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:800 20px/1 "Exo 2",Arial,sans-serif;background:#1A1A1A;border:2px solid #555;color:#cfcfcf;box-shadow:0 0 0 6px #1A1A1A}
+.step .t{display:block;font:600 15px/1.3 "Exo 2",Arial,sans-serif;margin-top:14px;color:#B9C3C6;max-width:19ch}
+.step:hover .n{border-color:#E42931;color:#fff}
+.step.on .n{background:#E42931;border-color:#E42931;color:#fff}
+.step.on .t{color:#fff}
+.step.skip{opacity:.38;cursor:default}
+.step.skip .n{border-style:dashed}
+.step .sk{display:block;font:500 11px/1.2 "Poppins",Arial,sans-serif;color:#B9C3C6;margin-top:5px}
+
+.dcard{margin-top:40px;background:#F8F8F8;border-radius:32px;padding:clamp(28px,3.6vw,64px)}
+.detail{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:clamp(32px,4vw,80px);align-items:center}
+.detail .k{font:500 14px/1 "Poppins",Arial,sans-serif;color:#7a7a7a}
+.detail h3{font:700 clamp(24px,2.3vw,34px)/1.15 "Exo 2",Arial,sans-serif;color:#404040;margin:10px 0 0}
+.detail .d{font:400 16.5px/1.65 "Poppins",Arial,sans-serif;color:#5C5C5C;margin:14px 0 0}
+.val{margin-top:18px;border-left:3px solid #E42931;padding:2px 0 2px 16px}
+.val small{display:block;font:600 12px/1 "Poppins",Arial,sans-serif;color:#E42931;margin-bottom:6px}
+.val span{font:500 15.5px/1.5 "Poppins",Arial,sans-serif;color:#404040}
+.noteb{margin-top:16px;display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px dashed rgba(228,41,49,.6);border-radius:16px;padding:12px 14px;font:400 14px/1.5 "Poppins",Arial,sans-serif;color:#404040}
+.noteb svg{flex:none;color:#E42931;margin-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.navs{display:flex;gap:10px;margin-top:24px;align-items:center}
+.rb{width:48px;height:48px;border-radius:50%;border:1px solid #d5d5d5;background:#fff;color:#404040;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.rb:hover{border-color:#E42931;color:#E42931}
+.rb.off{opacity:.35;cursor:default}
+.navs small{font:500 13px/1 "Poppins",Arial,sans-serif;color:#7a7a7a;margin-left:6px}
+/* pillars */
+.pil-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:44px}
+.pil{background:#444146;border:1px solid rgba(255,255,255,.08);border-radius:32px;padding:38px 34px 32px;display:flex;flex-direction:column}
+.pil .ic{width:58px;height:58px;border-radius:50%;background:rgba(228,41,49,.22);color:#FF7A80;display:flex;align-items:center;justify-content:center}
+.pil h3{font:800 30px/1.1 "Exo 2",Arial,sans-serif;color:#fff;margin:22px 0 0}
+.pil .tl{font:600 16px/1.3 "Exo 2",Arial,sans-serif;color:#E42931;margin:8px 0 0}
+.pil .tx{font:400 15.5px/1.6 "Poppins",Arial,sans-serif;color:#E0DDE2;margin:12px 0 0;flex:1}
+.mini{margin-top:22px;padding:16px;border-radius:18px;background:#1d1d1d;border:1px solid #333}
+.mini small{display:block;font:500 11.5px/1 "Poppins",Arial,sans-serif;color:#9a9a9a;margin-bottom:12px}
+.mrow{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.lv{font:600 12px/1 "Poppins",Arial,sans-serif;border-radius:30px;padding:7px 11px}
+.lv.a{background:#1f3b2a;color:#6fe39a}.lv.m{background:#3d3220;color:#f2b85a}.lv.b{background:#3e2224;color:#ff8a8f}.lv.g{background:#2f2f2f;color:#ddd}.lv.r{background:#E42931;color:#fff}
+.hier{display:flex;flex-direction:column;gap:6px}
+.hier div{font:500 12.5px/1.2 "Poppins",Arial,sans-serif;color:#fff;background:#2c2c2c;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:8px}
+.hier div::before{content:"";width:6px;height:6px;border-radius:50%;background:#E42931}
+.bbar{display:flex;height:12px;border-radius:12px;overflow:hidden;background:#2f2f2f}
+.bleg{display:flex;gap:14px;margin-top:10px;flex-wrap:wrap}
+.bleg span{font:500 12px/1 "Poppins",Arial,sans-serif;color:#B9C3C6;display:flex;align-items:center;gap:6px}
+.bleg i{width:9px;height:9px;border-radius:3px;display:block}
+.pil .mini{background:#232025;border:1px solid rgba(255,255,255,.14);box-shadow:0 6px 16px rgba(0,0,0,.22)}
+.pil .mini small{color:#C4C0C8}
+.pil .lv.g{background:#3A373D;color:#fff}
+.pil .hier div{background:#3A373D}
+.pil .ph{display:flex;align-items:center;gap:16px}
+.pil .ic{width:52px;height:52px;flex:none}
+.pil .ic svg{width:26px;height:26px}
+.pil h3{margin:0;font-size:26px;min-width:0;text-wrap:balance}
+.pil .ph+.tl{margin-top:20px}.pil .ph+.tx{margin-top:20px}
+@media (max-width:480px){.pil{padding:30px 22px 26px;border-radius:26px}.pil .ph{gap:12px}.pil .ic{width:46px;height:46px}.pil .ic svg{width:23px;height:23px}.pil h3{font-size:22px}}
+/* features */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.tab{border:0;background:#3A3A3A;color:#fff;border-radius:60px;padding:12px 20px;font:500 15px/1 "Poppins",Arial,sans-serif;cursor:pointer;min-height:46px;white-space:nowrap}
+.tab:hover{background:#474747}
+.tab.on{background:#E42931;color:#fff}
+.fp{display:grid;grid-template-columns:minmax(0,62fr) minmax(0,38fr);gap:clamp(32px,4.5vw,96px);margin-top:36px;align-items:center}
+.fp h3{font:800 32px/1.15 "Exo 2",Arial,sans-serif;color:#E3F4F8;margin:0}
+.fp p{font:400 16.5px/1.65 "Poppins",Arial,sans-serif;color:#B9C3C6;margin:14px 0 0}
+.fp ul{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-direction:column;gap:10px}
+.fp li{display:flex;gap:10px;font:500 15px/1.45 "Poppins",Arial,sans-serif;color:#E3F4F8}
+.fp li svg{flex:none;color:#E42931;margin-top:2px}
+.more{margin-top:48px;padding-top:26px;border-top:1px solid #333;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.more small{font:600 13px/1 "Poppins",Arial,sans-serif;color:#E3F4F8;margin-right:8px}
+.more .chip{background:#2E2E2E;color:#E3F4F8}
+/* roles */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:44px}
+.role{background:#242424;border:1px solid #363636;border-radius:24px;padding:24px 22px}
+.role .ic{color:#E42931;display:block}
+.role b{display:block;font:700 18px/1.2 "Exo 2",Arial,sans-serif;color:#fff;margin-top:14px}
+.role span{display:block;font:400 14px/1.5 "Poppins",Arial,sans-serif;color:#B9C3C6;margin-top:8px}
+/* cta */
+.cta{margin:clamp(80px,8vw,130px) clamp(10px,2vw,30px) 0;border-radius:32px;background:linear-gradient(180deg,#3a1b1e 0%,#A8222B 100%);padding:clamp(56px,6vw,104px) 0;text-align:center}
+.cta h3{font:900 clamp(30px,3.4vw,54px)/1.08 "Exo 2",Arial,sans-serif;color:#fff;margin:18px 0 0}
+.cta p{font:400 18px/1.6 "Poppins",Arial,sans-serif;color:#f1dcdd;max-width:56ch;margin:14px auto 0}
+.cta .ctas{justify-content:center}
+.cta .btn-r{background:#fff;color:#B5232B}.cta .btn-r:hover{background:#f3f3f3;color:#B5232B}
+.cta .pill{background:rgba(0,0,0,.28)}
+
+/* footer */
+.foot{margin-top:40px;padding-bottom:20px}
+.sep{display:flex;align-items:center;gap:22px;margin:0 auto 70px;padding:0 clamp(20px,2.8vw,56px);max-width:1840px}
+.sep::before,.sep::after{content:"";flex:1;height:1px;background:#3a3a3a}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.flogo{display:block;height:52px}.flogo svg{height:100%;width:auto;display:block}
+.ftag{font:400 clamp(24px,2vw,31px)/1.2 "Poppins",Arial,sans-serif;margin:16px 0 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;color:#E3F4F8}
+.ftag .r{color:#E42931}
+.rocket{width:42px;height:42px;border-radius:50%;background:#E42931;display:inline-flex;align-items:center;justify-content:center;color:#fff}
+.fsub{font:400 19px/1.5 "Poppins",Arial,sans-serif;color:#9a9a9a;margin:22px 0 0}
+.fbtn{margin-top:28px;display:inline-flex;align-items:center;gap:12px;border:1px solid #E42931;border-radius:94px;padding:18px 64px;background:transparent;color:#fff;font:600 15px/1 "Syne","Poppins",Arial,sans-serif;cursor:pointer}
+.fc{display:flex;gap:16px;margin-bottom:22px}
+.fc .ci{width:46px;height:46px;border-radius:50%;background:#2c2c2c;display:flex;align-items:center;justify-content:center;flex:none;color:#ddd}
+.fc b{display:block;font:600 16px/1.3 "Poppins",Arial,sans-serif;color:#fff}
+.fc span{display:block;font:400 16px/1.55 "Poppins",Arial,sans-serif;color:#9a9a9a}
+.fs b{font:600 16px/1.3 "Poppins",Arial,sans-serif;color:#fff;display:block}
+.fs p{font:400 17px/1.5 "Poppins",Arial,sans-serif;color:#9a9a9a;margin:8px 0 22px}
+.soc{display:flex;align-items:center;gap:14px;margin-bottom:18px;font:400 17px/1 "Poppins",Arial,sans-serif;color:#9a9a9a}
+.soc i{width:46px;height:46px;border-radius:50%;background:#2c2c2c;display:flex;align-items:center;justify-content:center;color:#ddd}
+.fbar{margin-top:56px;border-top:1px solid #333;padding:20px 0 6px}
+.fbar .in{display:flex;flex-wrap:wrap;gap:14px 40px;justify-content:space-between;font:400 13.5px/1.5 "Poppins",Arial,sans-serif;color:#9a9a9a}
+.fbar nav{display:flex;gap:40px;flex-wrap:wrap}
+/* modal / toast */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:80;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal{background:#242424;border:1px solid #3a3a3a;border-radius:30px;width:min(520px,100%);padding:32px;position:relative}
+.modal h4{font:800 28px/1.1 "Exo 2",Arial,sans-serif;margin:14px 0 0;color:#fff}
+.modal p{font:400 14.5px/1.55 "Poppins",Arial,sans-serif;color:#B9C3C6;margin:10px 0 0}
+.fld{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+.fld label{font:500 13px/1 "Poppins",Arial,sans-serif;color:#E3F4F8}
+.fld input,.fld select{background:#1d1d1d;border:1px solid #444;border-radius:14px;padding:13px 14px;color:#fff;font:400 15px/1.2 "Poppins",Arial,sans-serif}
+.xb{position:absolute;right:16px;top:16px;width:44px;height:44px;border-radius:50%;border:1px solid #444;background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#2E2E2E;border:1px solid #E42931;color:#fff;border-radius:40px;padding:12px 20px;font:500 14px/1.3 "Poppins",Arial,sans-serif;z-index:90;max-width:calc(100% - 32px);text-align:center}
+/* illustrations */
+.ill{position:absolute;inset:0;background:#F4F5FA;padding:22px;display:flex;flex-direction:column;gap:12px;font-family:"Poppins",Arial,sans-serif;color:#1d2433}
+.ill h6{margin:0;font:600 16px/1.2 "Poppins",Arial,sans-serif;color:#1d2433}
+.ill .sb{font:400 12px/1.3 "Poppins",Arial,sans-serif;color:#6b7285;margin-top:4px}
+.ill .bx{background:#fff;border-radius:12px;border:1px solid #e6e8f0;padding:14px}
+.ill .rw{display:flex;align-items:center;gap:10px}
+.skl{height:8px;border-radius:6px;background:#e7e9f1}
+.st{font:600 11px/1 "Poppins",Arial,sans-serif;border-radius:20px;padding:6px 9px;white-space:nowrap}
+.st.ok{background:#e3f7ea;color:#1a7f41}.st.wt{background:#fff3df;color:#9a5d00}.st.no{background:#fde6e7;color:#b8232b}.st.rd{background:#E42931;color:#fff}.st.gr{background:#eef0f5;color:#4b5266}
+.itag{position:absolute;right:12px;top:12px;font:500 11px/1 "Poppins",Arial,sans-serif;color:#5d5d5d;background:rgba(255,255,255,.94);border:1px solid #e3e3e3;border-radius:20px;padding:6px 10px}
+.bar{height:8px;border-radius:8px;background:#eceef4;overflow:hidden}.bar i{display:block;height:100%}
+/* responsive fallbacks for the desktop artboard */
+
+/* related AI solutions (pattern: “Tecnologie correlate”) */
+.rel{padding:clamp(80px,8vw,130px) 0 clamp(40px,4vw,60px)}
+.rel .h2{margin:0;font-size:clamp(30px,2.9vw,42px)}
+.rel .h2 span{color:#E42931}
+.rel-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px clamp(30px,6vw,120px);max-width:1100px;margin:64px auto 0}
+.ri{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
+.ri .tagp{display:inline-flex;align-items:center;gap:10px;background:#3A3A3A;border-radius:94px;padding:9px 20px;font:500 16px/1.2 "Poppins",Arial,sans-serif;color:#fff;text-transform:uppercase}
+.ri .tagp::before{content:"";width:8px;height:8px;border-radius:50%;background:#E42931}
+.ri .lg{height:84px;display:flex;align-items:center;justify-content:center}
+.ri .lg img{height:72px;width:auto;display:block;border-radius:10px}
+.ri h3{font:800 32px/1.1 "Exo 2",Arial,sans-serif;color:#E3F4F8;margin:0}
+.ri p{font:400 17px/1.5 "Poppins",Arial,sans-serif;color:#8A8A8A;margin:0;max-width:34ch}
+.arb{display:inline-flex;align-items:center;width:78px;height:34px;border:1.5px solid #E3F4F8;border-radius:40px;padding:0 4px;text-decoration:none;margin-top:6px}
+.arb i{width:24px;height:24px;border-radius:50%;background:#fff;color:#1A1A1A;display:flex;align-items:center;justify-content:center}
+.arb:hover{border-color:#E42931}.arb:hover i{background:#E42931;color:#fff}
+.kph{display:block;width:72px;height:72px;border-radius:50%;border:2px dashed #5a5a5a}
+.ri.off h3{color:#9a9a9a}
+.soon2{font:500 13px/1 "Poppins",Arial,sans-serif;color:#E3F4F8;border:1px dashed #777;border-radius:30px;padding:8px 14px}
+/* burger & mobile nav inside the responsive artboard */
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:1px solid #555;background:transparent;align-items:center;justify-content:center;cursor:pointer;color:#fff}
+.mnav{position:absolute;top:96px;left:16px;right:16px;max-width:560px;margin-left:auto;background:#2B2B2B;border:1px solid #3a3a3a;border-radius:26px;padding:8px 16px 16px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.mnav .mi{display:flex;width:100%;justify-content:space-between;align-items:center;background:none;border:0;border-bottom:1px solid #3d3d3d;padding:15px 4px;font:500 16px/1 "Poppins",Arial,sans-serif;color:#E3F4F8;cursor:pointer;text-align:left;min-height:48px}
+.mnav .mi.on{color:#E42931}
+.msub{padding:8px 0 12px;border-bottom:1px solid #3d3d3d}
+.msub .lnk{padding:9px 8px;font-size:14px}
+.msol{display:flex;align-items:center;gap:12px;color:#fff;font:500 15px/1 "Poppins",Arial,sans-serif;border-radius:14px;padding:8px;text-decoration:none;min-height:48px}
+.msol.cur{background:#353535}
+.msol img{height:30px;border-radius:7px;display:block}
+.msol.lt img{background:#fff;padding:2px 6px}
+/* ===== responsive ===== */
+@media (min-width:1181px){.mnav{display:none}}
+@media (max-width:1180px){
+ .nav{display:none}.burger{display:inline-flex}
+ .hdr{height:72px;padding:0 12px 0 14px}.logo{height:42px}
+ .hero{padding-top:140px}
+ .hero-g{grid-template-columns:minmax(0,1fr);gap:56px}
+ .hv-h .wf{left:0}
+ .modes{grid-template-columns:repeat(2,minmax(0,1fr))}.mproof{grid-column:1/-1}
+ .detail,.fp{grid-template-columns:minmax(0,1fr);gap:32px}
+ .pil-g{grid-template-columns:minmax(0,1fr)}
+ .fg{grid-template-columns:1fr 1fr}.fg>div:first-child{grid-column:1/-1}
+}
+@media (max-width:900px){
+ .shead{grid-template-columns:minmax(0,1fr)}
+ .prob-g{grid-template-columns:minmax(0,1fr)}
+ .prob,.prob:first-child{padding:28px 0 6px}.prob+.prob{border-left:0;border-top:1px solid #333}
+ .track{overflow-x:auto;scrollbar-width:none;padding-bottom:6px}
+ .track{grid-template-columns:repeat(var(--n),minmax(118px,1fr)) !important}
+ .ticks{display:none}
+}
+@media (max-width:640px){
+ .in{padding:0 18px}
+ .hdr{top:12px;height:64px;width:calc(100% - 24px)}.logo{height:38px}
+ .mnav{top:86px;left:12px;right:12px}
+ .hero{padding:112px 0 64px}
+ .h1{font-size:38px}.claim{font-size:19px}.hdesc{font-size:15.5px}
+ .caps{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cap:nth-child(3){border-left:0;padding-left:0}.cap:nth-child(n+3){border-top:1px solid #3a2a2c}
+ .caps.chain .cap:nth-child(3)::before{display:none}
+ .ctas{flex-direction:column}.ctas .btn{width:100%}
+ .hv-h{padding-bottom:70px}.hv-h .wf{width:86%}
+ .hv-i .rda{display:none}
+ .tcard{margin:-24px 4px 0;padding:14px 8px 12px}.tn span{font-size:10px}.tn i{width:28px;height:28px;line-height:28px;font-size:13px}.thread::before{top:13px}
+ .band{font-size:11.5px;border-radius:16px}
+ .pin{font-size:11px;padding:7px 10px}
+ .modes{grid-template-columns:minmax(0,1fr)}
+ .dcard{border-radius:24px;padding:24px 18px}
+ .tabs{flex-wrap:nowrap;overflow-x:auto;margin-left:-18px;margin-right:-18px;padding:0 18px 4px;scrollbar-width:none}
+ .rel-g{grid-template-columns:minmax(0,1fr);gap:56px}
+ .cta{margin-left:8px;margin-right:8px;border-radius:26px}
+ .fg{grid-template-columns:minmax(0,1fr)}
+ .fbtn{width:100%;justify-content:center;padding:17px 20px}
+ .fbar .in{flex-direction:column;gap:12px}
+}
+
+
+/* ===== Hybrid: boxed wrapper aligned with the header pill ===== */
+.bxw{width:100%;max-width:1265px;margin:0 auto;padding:0 24px}
+.ctaw .cta{margin:clamp(80px,8vw,130px) 0 0}
+.plogo{display:inline-flex;align-items:center}
+.plogo img{height:52px;width:auto;display:block;border-radius:10px}
+.plogo.lt img{background:#fff;padding:5px 12px;height:50px}
+/* restored boxed design: Il problema + Come funziona */
+.vb .panel{margin:0}
+.vb .panel .in{padding:0 clamp(20px,3.6vw,50px)}
+.vb .prob-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:40px;border-top:0}
+.vb .prob,.vb .prob:first-child{background:#fff;border:1px solid #ececec;border-radius:24px;padding:30px 28px}
+.vb .prob+.prob{border:1px solid #ececec}
+.vb .prob .p{font:600 19px/1.3 "Exo 2",Arial,sans-serif;color:#404040}
+.vb .prob .p svg{color:#9a9a9a}
+.vb .prob .ar{background:#e5e5e5;margin:20px 0}
+.vb .prob .s{font:400 15.5px/1.55 "Poppins",Arial,sans-serif;color:#404040}
+.vb .modes{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px 26px;align-items:center;background:#242424;border:1px solid #363636;border-radius:26px;padding:18px 22px;margin-top:34px}
+.vb .seq .chip{font-size:13px;padding:8px 13px}
+.vb .track{margin-top:40px}
+.vb .tband{margin-top:22px}
+.vb .detail{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+@media (max-width:1180px){.vb .detail{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:900px){
+ .vb .prob-g{grid-template-columns:minmax(0,1fr);gap:14px}
+ .vb .prob,.vb .prob:first-child{padding:22px 20px}
+ .vb .prob+.prob{border:1px solid #ececec}
+}
+@media (max-width:640px){
+ .bxw{padding:0 16px}
+ .vb .panel{padding:36px 0;border-radius:24px}
+ .vb .panel .in{padding:0 18px}
+ .vb .modes{grid-template-columns:minmax(0,1fr);padding:14px}
+ .vb .seg{display:flex}.vb .seg button{flex:1;padding:11px 8px}
+ .vb .proof{flex-direction:column;align-items:stretch;gap:8px}
+ .plogo img{height:44px}.plogo.lt img{height:42px}
+}
+
+/* 1 · dropdown: continuous hover area (trigger fills the header height, bridge reaches the panel) */
+.hdr nav{align-self:stretch;display:flex}
+.nav{height:100%}
+.nav>li{height:100%;display:flex;align-items:center}
+.mega::before{top:-16px;height:16px}
+.sol.off:hover{opacity:1}
+/* 2 · hero info grid without dividers */
+.caps{border-top:0;border-bottom:0}
+.cap+.cap{border-left:0}
+.caps.chain .cap+.cap::before{display:none}
+@media (max-width:640px){.cap:nth-child(n+3){border-top:0}}
+/* 3 · related solutions: whole item clickable */
+a.ri{text-decoration:none;color:inherit;border-radius:24px}
+a.ri:hover .arb{border-color:#E42931}
+a.ri:hover .arb i{background:#E42931;color:#fff}
+a.ri:hover h3{color:#fff}
+a.ri.off:hover h3{color:#cfcfcf}
+a.ri.off:hover .soon2{border-color:#E42931}
+a.ri:focus-visible{outline:2px solid #E42931;outline-offset:8px}
+/* Kapa placeholder */
+.khero{padding:168px 0 96px}
+.kbox{padding:clamp(70px,7vw,110px) 0 0}
+.kcard{border:1px dashed #4a4a4a;border-radius:32px;padding:clamp(40px,5vw,72px) clamp(24px,5vw,72px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
+.kcard p{font:400 17px/1.6 "Poppins",Arial,sans-serif;color:#B9C3C6;margin:0;max-width:56ch}
+@media (max-width:640px){.khero{padding:112px 0 64px}}
+
+.sp{background-image:url(./assets/a5f7112d0de0ee520e7634b2d3d1d9eb.webp);background-repeat:no-repeat;background-size:100% auto;width:100%}
+.s-h_dq-658{aspect-ratio:1400/658;background-position:0 14.53488%}
+.r-1_6{aspect-ratio:1.6}
+.s-h_overview-627{aspect-ratio:1400/627;background-position:0 0.00000%}
+.s-h_target-551{aspect-ratio:1400/551;background-position:0 22.90554%}
+.s-h_plan-746{aspect-ratio:1400/746;background-position:0 30.86898%}
+.s-h_wf-559{aspect-ratio:1400/559;background-position:0 39.84609%}
+.s-h_baseline-797{aspect-ratio:1400/797;background-position:0 48.64719%}
+.s-h_versions-631{aspect-ratio:1400/631;background-position:0 58.07768%}
+.s-h_myact-344{aspect-ratio:1400/344;background-position:0 63.96854%}
+.s-h_approve_row-409{aspect-ratio:1400/409;background-position:0 8.02098%}
+.s-h_modes-64{aspect-ratio:1400/64;background-position:0 12.69297%}
+/* Come funziona – Variante 02 (scoped) */
+#cf2 .flow{display:grid;grid-template-columns:minmax(0,1fr) 64px minmax(0,1.15fr) 64px minmax(0,1.1fr) 52px minmax(0,1fr);grid-template-rows:auto auto;column-gap:0;row-gap:18px;margin-top:56px}
+#cf2 .lab{display:flex;align-items:baseline;gap:10px}
+#cf2 .lab .num{font:900 15px/1 "Exo 2",Arial,sans-serif;color:#E42931;letter-spacing:.06em}
+#cf2 .lab .lt{font:800 19px/1.2 "Exo 2",Arial,sans-serif;color:#fff}
+#cf2 .l1{grid-column:1;grid-row:1}
+#cf2 .l2{grid-column:3;grid-row:1}
+#cf2 .l3{grid-column:5;grid-row:1}
+#cf2 .l4{grid-column:7;grid-row:1}
+#cf2 .b1{grid-column:1;grid-row:2}
+#cf2 .fk{grid-column:2;grid-row:2}
+#cf2 .mg{grid-column:4;grid-row:2}
+#cf2 .b2{grid-column:3;grid-row:2}
+#cf2 .b3{grid-column:5;grid-row:2}
+#cf2 .ar{grid-column:6;grid-row:2}
+#cf2 .b4{grid-column:7;grid-row:2}
+#cf2 .bd{display:flex;flex-direction:column}
+#cf2 .card{background:#242424;border:1px solid #363636;border-radius:24px;padding:24px 22px;display:flex;flex-direction:column;gap:14px;flex:1;transition:opacity .2s,border-color .2s}
+#cf2 .ico{width:48px;height:48px;border-radius:50%;background:rgba(228,41,49,.13);color:#E42931;display:flex;align-items:center;justify-content:center;flex:none}
+#cf2 .card h3{font:800 21px/1.15 "Exo 2",Arial,sans-serif;color:#fff;margin:0}
+#cf2 .ct{font:400 15px/1.55 "Poppins",Arial,sans-serif;color:#B9C3C6;margin:0}
+#cf2 .card h3+.ct{margin-top:6px}
+#cf2 .tag{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;font:500 12.5px/1.2 "Poppins",Arial,sans-serif;color:#E3F4F8;background:#2E2E2E;border-radius:30px;padding:7px 12px;margin-top:auto}
+#cf2 .tag svg{color:#E42931;flex:none}
+#cf2 .opt .tag{margin-top:10px}
+#cf2 .b2{position:relative;gap:18px}
+#cf2 .opt{flex-direction:row;align-items:flex-start;gap:16px;padding:20px}
+#cf2 .or{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;background:#1A1A1A;border:1px solid #444;border-radius:30px;padding:4px 12px;font:600 12px/1.2 "Poppins",Arial,sans-serif;color:#E3F4F8}
+#cf2 .mini3{list-style:none;margin:auto 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+#cf2 .mini3 li{display:flex;align-items:center;gap:10px;font:500 13.5px/1.3 "Poppins",Arial,sans-serif;color:#E3F4F8;background:#2b2b2b;border-radius:12px;padding:9px 12px}
+#cf2 .mini3 li span{color:#E42931;display:flex}
+#cf2 .fin{background:linear-gradient(160deg,#E42931 0%,#A8222B 100%);border-color:#E42931;justify-content:center;box-shadow:0 24px 60px rgba(228,41,49,.25)}
+#cf2 .fin .big{width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;display:flex;align-items:center;justify-content:center}
+#cf2 .fin h3{font-size:26px}
+#cf2 .fin .ct{color:#fde3e4}
+#cf2 .cx{width:100%;height:100%;display:block;overflow:visible}
+#cf2 .cx path,#cf2 .vx path{fill:none;stroke:#E42931;stroke-width:2.5;vector-effect:non-scaling-stroke;stroke-linecap:round;transition:opacity .2s}
+#cf2 .cx .pb,#cf2 .vx .pb{stroke-dasharray:7 6}
+#cf2 .ar{display:flex;align-items:center;position:relative}
+#cf2 .ar i,#cf2 .v3 i{display:block;background:#E42931;border-radius:3px}
+#cf2 .ar i{height:2.5px;flex:1}
+#cf2 .ar span{color:#E42931;display:flex;margin-left:-12px}
+#cf2 .vx{display:none}
+#cf2 .flow:has(.oa:hover) .pb,#cf2 .flow:has(.ob:hover) .pa{opacity:.18}
+#cf2 .flow:has(.oa:hover) .ob,#cf2 .flow:has(.ob:hover) .oa{opacity:.45}
+#cf2 .oa:hover,#cf2 .ob:hover{border-color:#E42931}
+#cf2 .note{margin:30px 0 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font:400 14.5px/1.5 "Poppins",Arial,sans-serif;color:#B9C3C6}
+#cf2 .key{display:inline-flex;align-items:center;gap:8px;font:500 13px/1 "Poppins",Arial,sans-serif;color:#E3F4F8}
+#cf2 .key i{display:inline-block;width:26px;border-top:2.5px solid #E42931}
+#cf2 .key i.d{border-top-style:dashed}
+@media (max-width:1100px){
+#cf2 .flow{display:flex;flex-direction:column;gap:0;margin-top:40px}
+#cf2 .lab{margin:0 0 12px}
+#cf2 .l1{order:1}
+#cf2 .b1{order:2}
+#cf2 .v1{order:3}
+#cf2 .l2{order:4}
+#cf2 .b2{order:5}
+#cf2 .v2{order:6}
+#cf2 .l3{order:7}
+#cf2 .b3{order:8}
+#cf2 .v3{order:9}
+#cf2 .l4{order:10}
+#cf2 .b4{order:11}
+#cf2 .cx{display:none}
+#cf2 .vx{display:block;width:100%;height:48px;margin:8px 0}
+#cf2 .v3{display:flex;flex-direction:column;align-items:center;height:56px;margin:4px 0 8px}
+#cf2 .v3 i{width:2.5px;flex:1}
+#cf2 .v3 span{color:#E42931;display:flex;margin-top:-10px}
+#cf2 .l2,#cf2 .l3,#cf2 .l4{margin-top:4px}
+#cf2 .b2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+#cf2 .opt{flex-direction:column}
+#cf2 .or{top:-11px;transform:translateX(-50%)}
+#cf2 .lab.l2{margin-bottom:20px}
+#cf2 .mini3{flex-direction:row;flex-wrap:wrap}
+#cf2 .fin{align-items:flex-start}
+}
+@media (max-width:560px){
+#cf2 .lab .lt{font-size:18px}
+#cf2 .opt{padding:16px 14px;gap:10px}
+#cf2 .opt .ico{width:40px;height:40px}
+#cf2 .card h3{font-size:18px}
+#cf2 .fin h3{font-size:22px}
+#cf2 .ct{font-size:14px}
+#cf2 .opt .tag{font-size:11.5px;padding:6px 9px}
+#cf2 .or{font-size:11px;padding:3px 9px}
+}
+#cf2 .cxw{position:relative}
+#cf2 .cxw .cx{position:absolute;inset:0}
+#cf2 .dt{position:absolute;width:12px;height:12px;border-radius:50%;transform:translate(-50%,-50%);z-index:2;display:block;transition:opacity .2s}
+#cf2 .dt.s,#cf2 .dt.a{background:#E42931;box-shadow:0 0 0 4px #1A1A1A}
+#cf2 .dt.b{background:#1A1A1A;border:2.5px solid #E42931;box-shadow:0 0 0 3px #1A1A1A}
+#cf2 .cx .ps,#cf2 .vx .ps{stroke-dasharray:none}
+#cf2 .flow:has(.oa:hover) .dt.b,#cf2 .flow:has(.ob:hover) .dt.a{opacity:.18}
+#cf2 .b1 .card{justify-content:center}
+/* prova cromatica: card 01 grigio medio-scuro */
+#cf2 .b1 .card{background:#444146;border-color:#57535A;box-shadow:none}
+#cf2 .b1 .ct{color:#ECE8EA}
+#cf2 .b1 .ico{background:rgba(228,41,49,.18);color:#FF4F56}
+#cf2 .ar b.dt{position:absolute}
+#cf2 .ar i{margin-left:0}
+#cf2 .note{margin:34px 0 0;font:500 16px/1.55 "Poppins",Arial,sans-serif;color:#E3F4F8;display:block}
+#cf2 .vxw{display:none}
+@media (max-width:1100px){
+#cf2 .cxw.fk,#cf2 .cxw.mg{display:none}
+#cf2 .vxw{display:block;position:relative;width:100%;height:56px;margin:6px 0}
+#cf2 .vxw .vx{display:block;position:absolute;inset:0;width:100%;height:100%;margin:0}
+#cf2 .vxw.v3{display:flex;flex-direction:column;align-items:center;height:60px;margin:6px 0 6px}
+#cf2 .vxw.v3 i{width:2.5px;flex:1;background:#E42931;border-radius:3px;display:block}
+#cf2 .vxw.v3 span{color:#E42931;display:flex;margin-top:-10px}
+#cf2 .b1 .card{flex-direction:row;align-items:center;gap:18px}
+#cf2 .b2{gap:16px}
+#cf2 .opt{flex-direction:row}
+#cf2 .or{top:-11px;transform:translateX(-50%)}
+#cf2 .lab.l2{margin-bottom:22px}
+}
+@media (max-width:640px){
+#cf2 .opt{flex-direction:column;gap:10px}
+#cf2 .b2{gap:12px}
+}
+@media (max-width:400px){
+#cf2 .opt{padding:14px 12px}
+#cf2 .opt .ico{width:36px;height:36px}
+#cf2 .card h3{font-size:17px}
+#cf2 .opt .ct{font-size:13.5px}
+}
+#cf2 .vlab{display:none}
+@media (max-width:1100px){
+#cf2 .lab.l2,#cf2 .lab.l3,#cf2 .lab.l4{display:none}
+#cf2 .vxw.v1,#cf2 .vxw.v2{height:96px}
+#cf2 .vxw.v3{height:96px}
+#cf2 .vlab{display:inline-flex;align-items:baseline;gap:8px;position:absolute;left:50%;transform:translate(-50%,-50%);z-index:3;background:#1A1A1A;border:1px solid #3a3a3a;border-radius:40px;padding:8px 16px;white-space:nowrap;font:800 15px/1.1 "Exo 2",Arial,sans-serif;color:#fff}
+#cf2 .vlab em{font-style:normal;font-weight:900;font-size:12.5px;color:#E42931;letter-spacing:.06em}
+#cf2 .v1 .vlab{top:30%}
+#cf2 .v2 .vlab{top:70%}
+#cf2 .v3 .vlab{top:44%}
+#cf2 .vxw.v3 > span:not(.vlab){position:absolute;bottom:-4px}
+#cf2 .vxw.v3 .vlab{color:#fff;bottom:auto;margin:0;display:inline-flex;top:44%}
+#cf2 .vxw.v3{position:relative}
+#cf2 .vxw.v1{margin-bottom:6px}
+}
+@media (max-width:640px){
+#cf2 .vlab{font-size:14px;padding:7px 13px}
+}
+#cf2 .oa{position:relative;isolation:isolate;border-color:rgba(228,41,49,.55);background:linear-gradient(150deg,#2b1e20 0%,#262222 45%,#242424 100%);box-shadow:0 0 0 1px rgba(228,41,49,.06),0 0 30px -6px rgba(228,41,49,.32)}
+#cf2 .oa::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(115deg,transparent 35%,rgba(255,150,155,.95) 50%,transparent 65%) no-repeat;background-size:260% 100%;background-position:120% 0;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);pointer-events:none;z-index:1;animation:pSheen 7s ease-in-out 1.2s infinite}
+#cf2 .oa::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(120% 90% at 0% 0%,rgba(228,41,49,.10),transparent 55%);pointer-events:none;z-index:-1}
+@keyframes pSheen{0%{background-position:120% 0}38%{background-position:-20% 0}100%{background-position:-20% 0}}
+#cf2 .pico{background:radial-gradient(circle at 32% 28%,rgba(228,41,49,.38),rgba(228,41,49,.07) 70%);border:1px solid rgba(228,41,49,.55);box-shadow:0 0 18px -2px rgba(228,41,49,.35),inset 0 0 10px rgba(228,41,49,.18)}
+#cf2 .pico .pband{fill:rgba(228,41,49,.28)}
+#cf2 .pico .phist{stroke:#F2D7D9;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+#cf2 .pico .pfc{stroke:#FF5A60;stroke-width:1.9;stroke-linecap:round;stroke-dasharray:2.2 2.4;animation:pFlow 2.6s linear infinite}
+#cf2 .pico .pnow{fill:#fff}
+#cf2 .pico .pend{fill:#FF5A60}
+@keyframes pFlow{to{stroke-dashoffset:-9.2}}
+#cf2 .oa:hover{box-shadow:0 0 0 1px rgba(228,41,49,.12),0 0 40px -4px rgba(228,41,49,.45)}
+@media (prefers-reduced-motion: reduce){
+#cf2 .oa::before{animation:none;opacity:0}
+#cf2 .pico .pfc{animation:none}
+}
+#cf2 .shead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px clamp(40px,6vw,120px);align-items:end}
+@media (max-width:1100px){#cf2 .shead{grid-template-columns:minmax(0,1fr)}}
+
+
+/* === correzioni responsive (tab funzionalità) === */
+@media (max-width:1023px){
+ .tabs{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-left:-24px;margin-right:-24px;padding:0 24px 4px;scroll-padding:0 24px}
+ .tabs::-webkit-scrollbar{display:none}
+ .tabs .tab{flex:none}
+ .tabs:not(.tend){-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 56px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 56px),transparent 100%)}
+}
+@media (max-width:640px){
+ .tabs{margin-left:-16px;margin-right:-16px;padding:0 16px 4px;scroll-padding:0 16px}
+}
+
+/* === correzioni responsive (Hero mobile) === */
+@media (max-width:640px){.hv-h > .pin{display:none}}
+@media (max-width:1023px){.tabs{gap:8px}.tabs .tab{padding-left:21px;padding-right:21px}}
+</style>
+</helmet>
+<div class="pg">
+<div class="hwrap"><header class="hdr">
+<a class="logo" href="#top" aria-label="BI Network"><svg role="img" aria-label="BI Network" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 321 66" fill="none"><path fill="#E42931" d="M107.2 42.3C107.2 46.3 104.9 47.9 102.3 47.9C100.1 47.9 98.5 47.3 97.2 45.9L82.9 29.3C82.7 29.0 82.5 28.9 82.3 28.9C81.9 28.9 81.6 29.2 81.6 29.7V47.4H74.7V26.8C74.7 22.3 77.3 20.7 80.8 20.7C83.3 20.7 84.8 21.3 86.4 23.2L99.2 38.5C99.4 38.8 99.6 38.8 99.9 38.8C100.2 38.8 100.4 38.6 100.4 38.1V21.2H107.2V42.3Z"></path><path fill="#E42931" d="M138.5 21.2V28.2H118.7C118.3 28.2 118.1 28.4 118.1 28.8V31.8H138.4V36.8H118.1V40.0C118.1 40.5 118.3 40.7 118.7 40.7H138.5V47.4H114.7C112.3 47.4 111.1 46.2 111.1 43.7V24.8C111.1 22.4 112.3 21.2 114.8 21.2H138.5Z"></path><path fill="#E42931" d="M170.6 21.2V28.2H159.2V47.4H152.1V28.2H140.7V21.2H170.6Z"></path><path fill="#E42931" d="M195.5 27.7L191.5 42.1C190.3 46.1 187.9 47.9 183.9 47.9C179.1 47.9 176.8 45.4 176.3 42.1L173.1 22.5C173.0 22.1 172.9 21.7 172.9 21.2H180.3C180.3 21.5 180.4 21.9 180.4 22.2L183.1 40.1C183.2 40.7 183.5 41.0 184.1 41.0C184.5 41.0 184.8 40.8 185.0 40.2L189.0 26.2C190.1 22.4 192.1 20.7 196.4 20.7C200.5 20.7 202.5 22.4 203.5 26.0L207.4 40.2C207.5 40.8 207.8 41.0 208.3 41.0C208.8 41.0 209.1 40.7 209.2 40.1L212.2 22.2C212.3 21.9 212.3 21.6 212.3 21.2H219.6C219.6 21.7 219.5 22.1 219.5 22.5L216.0 42.1C215.4 45.6 213.1 47.9 208.3 47.9C204.4 47.9 202.0 46.0 201.0 42.1L197.2 27.7C197.1 27.1 196.8 26.9 196.4 26.9C195.9 26.9 195.7 27.1 195.5 27.7Z"></path><path fill="#E42931" d="M234.3 47.4C229.6 47.4 226.2 45.8 223.8 43.1C221.7 40.8 220.4 37.7 220.4 34.3C220.4 32.5 220.8 30.7 221.5 29.1C222.2 27.4 223.3 25.9 224.6 24.7C226.9 22.6 230.1 21.2 234.3 21.2H239.8C244.0 21.2 247.1 22.6 249.4 24.7C250.8 25.9 251.8 27.4 252.5 29.1C253.3 30.7 253.6 32.5 253.6 34.3C253.6 37.7 252.4 40.8 250.3 43.1C247.9 45.8 244.4 47.4 239.8 47.4H234.3ZM234.3 28.2C231.9 28.2 230.4 28.8 229.3 29.9C228.7 30.4 228.2 31.1 227.9 31.9C227.6 32.7 227.4 33.5 227.4 34.3C227.4 35.9 228.0 37.4 229.0 38.5C230.1 39.7 231.8 40.5 234.3 40.5H239.8C242.2 40.5 243.9 39.7 245.0 38.5C246.1 37.4 246.6 35.9 246.6 34.3C246.6 33.5 246.5 32.7 246.1 31.9C245.8 31.1 245.3 30.4 244.7 29.9C243.6 28.8 242.1 28.2 239.8 28.2H234.3Z"></path><path fill="#E42931" d="M264.0 47.4H257.0V22.9C257.0 21.8 257.6 21.2 258.7 21.2H277.3C280.5 21.2 282.5 22.2 284.0 23.7C285.2 25.1 286.1 26.9 286.1 28.9C286.1 30.9 285.4 32.9 283.6 34.3C285.3 35.3 286.1 36.7 286.1 39.7V44.9C286.1 45.7 286.1 46.6 286.2 47.4H279.1C279.1 46.8 279.0 46.2 279.0 45.6V40.4C279.0 38.8 278.2 38.1 276.2 38.1H264.0V47.4ZM276.4 32.1C277.3 32.1 277.9 31.8 278.3 31.3C278.7 30.9 278.8 30.4 278.8 29.9C278.8 29.4 278.6 28.9 278.3 28.5C277.9 28.0 277.3 27.8 276.4 27.8H264.6C264.2 27.8 264.0 28.0 264.0 28.4V32.1L276.4 32.1Z"></path><path fill="#E42931" d="M296.6 21.2V31.9L308.5 22.3C308.9 22.0 309.3 21.6 309.6 21.2H319.4C319.2 21.5 318.9 21.7 318.7 21.9L304.3 33.1C304.2 33.1 304.2 33.2 304.1 33.3C304.1 33.3 304.1 33.4 304.1 33.5C304.1 33.7 304.1 33.8 304.3 33.9L319.7 46.4C320.1 46.7 320.4 47.0 320.7 47.4H310.3C309.9 47.0 309.5 46.6 309.1 46.3L296.6 35.8V47.4H289.5V21.2H296.6Z"></path><path fill="#fff" d="M32.0 7.5C17.4 7.5 5.6 19.3 5.6 33.9C5.6 48.5 17.4 60.3 32.0 60.3C46.6 60.3 58.4 48.5 58.4 33.9C58.4 19.3 46.6 7.5 32.0 7.5Z"></path><path fill="#fff" d="M61.6 21.4C60.9 19.8 60.1 18.3 59.2 16.8C59.2 16.8 59.1 16.7 59.1 16.7C59.0 16.6 58.9 16.6 58.8 16.6H58.8C58.7 16.6 58.6 16.7 58.5 16.7C58.5 16.7 58.4 16.8 58.4 16.9C58.3 16.9 58.3 17.0 58.3 17.1C58.3 17.2 58.3 17.2 58.4 17.3C61.3 22.0 63.0 27.4 63.1 33.0C63.3 38.6 62.0 44.1 59.3 49.0C56.6 53.8 52.6 57.9 47.8 60.7C43.0 63.6 37.6 65.0 32.0 65.0C26.5 65.0 21.0 63.6 16.2 60.7C11.4 57.9 7.4 53.8 4.8 49.0C2.1 44.1 0.7 38.6 0.9 33.0C1.0 27.4 2.7 22.0 5.7 17.3C5.7 17.2 5.7 17.2 5.7 17.1C5.7 17.0 5.7 16.9 5.7 16.9C5.6 16.8 5.6 16.7 5.5 16.7C5.4 16.7 5.4 16.6 5.3 16.6H5.2C5.1 16.6 5.0 16.6 5.0 16.7C4.9 16.7 4.9 16.8 4.8 16.8C1.9 21.5 0.2 26.9 0.0 32.4C-0.2 37.9 0.9 43.3 3.4 48.3C5.9 53.2 9.6 57.4 14.1 60.5C18.7 63.5 24.0 65.4 29.5 65.8C35.0 66.3 40.5 65.3 45.5 63.0C50.5 60.7 54.8 57.1 58.0 52.6C61.2 48.2 63.3 42.9 63.9 37.5C64.5 32.0 63.7 26.4 61.6 21.4L61.6 21.4Z"></path><path fill="#2E2E2E" d="M33.0 33.1C35.5 32.2 37.0 30.0 37.0 27.3C37.0 23.1 33.4 20.5 27.4 20.5H15.8C15.7 20.6 15.5 20.6 15.4 20.7H15.3V20.8C15.2 20.9 15.1 21.1 15.1 21.3V46.6C15.1 46.8 15.2 46.9 15.3 47.1V47.1H15.4C15.5 47.2 15.7 47.3 15.8 47.3H27.9C34.1 47.3 38.0 44.4 38.0 39.8C38.0 36.5 36.1 34.0 33.0 33.1ZM21.5 26.1C21.5 26.0 21.5 25.9 21.6 25.9C21.6 25.8 21.7 25.8 21.8 25.8H27.1C29.3 25.8 30.6 26.7 30.6 28.4C30.6 28.4 30.6 28.5 30.6 28.5C30.6 28.5 30.6 28.5 30.6 28.5C30.6 30.2 29.3 31.2 27.1 31.2H21.8C21.8 31.2 21.7 31.2 21.7 31.2C21.6 31.1 21.6 31.1 21.6 31.1C21.5 31.0 21.5 31.0 21.5 31.0C21.5 30.9 21.5 30.9 21.5 30.8V26.1ZM31.5 39.2C31.5 41.0 29.9 42.1 27.1 42.1H21.8C21.8 42.1 21.7 42.1 21.7 42.0C21.6 42.0 21.6 42.0 21.6 42.0C21.5 41.9 21.5 41.9 21.5 41.9C21.5 41.8 21.5 41.8 21.5 41.7V36.5C21.5 36.4 21.5 36.3 21.6 36.2C21.6 36.2 21.7 36.1 21.8 36.1H27.1C29.9 36.1 31.5 37.2 31.5 39.0C31.5 39.1 31.5 39.1 31.5 39.1C31.5 39.1 31.5 39.1 31.5 39.2H31.5Z"></path><path fill="#2E2E2E" d="M43.9 20.6C42.9 20.6 41.9 20.9 41.1 21.5C40.2 22.1 39.6 22.9 39.3 23.9C38.9 24.8 38.9 25.9 39.2 26.9C39.4 27.9 40.0 28.7 40.8 29.4V46.8C40.8 46.9 40.9 47.1 41.0 47.2V47.3H41.0C41.2 47.4 41.3 47.5 41.5 47.5H46.4C46.5 47.5 46.7 47.4 46.8 47.3H46.9V47.2C47.0 47.1 47.1 46.9 47.1 46.8V29.4C47.9 28.7 48.4 27.9 48.7 26.9C49.0 25.9 48.9 24.8 48.6 23.9C48.3 22.9 47.6 22.1 46.8 21.5C45.9 20.9 45.0 20.6 43.9 20.6H43.9ZM46.6 27.2C46.2 27.8 45.5 28.3 44.8 28.5C44.1 28.7 43.3 28.7 42.6 28.4C42.0 28.0 41.4 27.5 41.1 26.8C40.8 26.1 40.7 25.4 41.0 24.6C41.2 23.9 41.6 23.3 42.3 22.9C42.9 22.5 43.7 22.3 44.4 22.4C45.1 22.6 45.8 22.9 46.3 23.5C46.8 24.1 47.1 24.8 47.1 25.5C47.1 26.1 46.9 26.7 46.6 27.2Z"></path></svg></a>
+<nav aria-label="Menu principale"><ul class="nav">
+<li onKeyDown="{{menuKey}}" onMouseEnter="{{enterGdd}}" onMouseLeave="{{leaveMenu}}"><button class="navbtn {{gddCls}}" onClick="{{tGdd}}" aria-haspopup="true" aria-expanded="{{menuGdd}}">Gestione del dato <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<sc-if value="{{menuGdd}}" hint-placeholder-val="{{false}}"><div class="mega"><p class="mega-t">Gestione del dato a 360°</p><p class="mega-s">Esplora le fasi del percorso di Bi Network per trasformare i tuoi dati in valore per il tuo business</p><div class="mega-grid"><button class="mega-item" onClick="{{ext}}"><i></i>Data Assessment</button><button class="mega-item" onClick="{{ext}}"><i></i>Data Integration</button><button class="mega-item" onClick="{{ext}}"><i></i>Data Platform &amp; Data Lake</button><button class="mega-item" onClick="{{ext}}"><i></i>BI &amp; Analytics</button><button class="mega-item" onClick="{{ext}}"><i></i>Reporting</button><button class="mega-item" onClick="{{ext}}"><i></i>AI &amp; Machine Learning</button><button class="mega-item" onClick="{{ext}}"><i></i>Application Maintenance</button><button class="mega-item" onClick="{{ext}}"><i></i>WEB APP</button></div><div class="mega-cta"><button class="ghost-s" onClick="{{ext}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg> Esplora tutti i servizi</button></div></div></sc-if></li>
+<li onKeyDown="{{menuKey}}" onMouseEnter="{{enterTp}}" onMouseLeave="{{leaveMenu}}"><button class="navbtn {{tpCls}}" onClick="{{tTp}}" aria-haspopup="true" aria-expanded="{{menuTp}}">Tecnologie &amp; Partner <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<sc-if value="{{menuTp}}" hint-placeholder-val="{{false}}"><div class="mega"><p class="mega-t" style="text-transform: none">Partner</p><p class="mega-s" style="border-bottom: 0; padding-bottom: 0; margin-bottom: 10px">BI Network è alla costante ricerca dei migliori partner tecnologici per aiutare i nostri clienti a trasformare in valore il proprio patrimonio informativo</p><div class="tp-p"><button class="lnk" style="display: inline-block" onClick="{{ext}}">Qlik Elite Partner</button><button class="lnk" style="display: inline-block" onClick="{{ext}}">Pocket AI</button><button class="lnk" style="display: inline-block" onClick="{{ext}}">Microsoft</button><button class="lnk" style="display: inline-block" onClick="{{ext}}">Snowflake</button><button class="lnk" style="display: inline-block" onClick="{{ext}}">Databricks</button></div><p class="mega-t" style="text-transform: none">Tecnologie per servizio</p><div class="tp-c"><div><h5>Data Integration</h5><button class="lnk" onClick="{{ext}}">Talend</button><button class="lnk" onClick="{{ext}}">Qlik Data Integration</button></div><div><h5>BI &amp; Analytics</h5><button class="lnk" onClick="{{ext}}">Qlik Sense e QlikView</button><button class="lnk" onClick="{{ext}}">Microsoft Power BI</button><button class="lnk" onClick="{{ext}}">Tableau</button><button class="lnk" onClick="{{ext}}">Looker</button></div><div><h5>Tool BI Network</h5><button class="lnk" onClick="{{ext}}">BIMAIL</button><button class="lnk" onClick="{{ext}}">BIREPORT</button><button class="lnk" onClick="{{ext}}">BIPLAY</button></div></div><div class="mega-cta"><button class="ghost-s" onClick="{{ext}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg> Esplora tutte le tecnologie</button></div></div></sc-if></li>
+<li onKeyDown="{{menuKey}}" onMouseEnter="{{enterSol}}" onMouseLeave="{{leaveMenu}}"><button class="navbtn on" onClick="{{tSol}}" aria-haspopup="true" aria-expanded="{{menuSol}}">Soluzioni AI <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<sc-if value="{{menuSol}}" hint-placeholder-val="{{false}}"><div class="mega"><p class="mega-t">Soluzioni AI</p><p class="mega-s">Le piattaforme BI Network per pianificare e governare i processi aziendali</p><div class="sol-grid">
+<a class="sol cur" href="../horizon/"><span class="mk"><img src="./assets/dac0974421828592549731cd0ddac7a0.webp" alt="Horizon"></span><b>Horizon</b><span class="l">Forecasting e planning</span></a>
+<a class="sol" href="../itera/"><span class="mk lt"><img src="./assets/3487a3aa9be57241285608b48302d209.webp" alt="Itera"></span><b>Itera</b><span class="l">Gestione degli acquisti aziendali</span></a>
+<a class="sol" href="../kapa/"><span class="mk"><img src="./assets/82ea30eb8ffa0019e308933a5a5151b7.svg" alt="Kapa" style="height: 32px; border-radius: 0"></span><b>Kapa</b><span class="l">Gestione operativa dei servizi professionali</span></a>
+</div></div></sc-if></li>
+<li><button class="navbtn" onClick="{{ext}}">Clienti</button></li><li><button class="navbtn" onClick="{{ext}}">Chi Siamo</button></li><li><button class="navbtn" onClick="{{ext}}">Eventi</button></li><li><button class="navbtn" onClick="{{ext}}">Contatti</button></li>
+</ul></nav><button class="burger" onClick="{{toggleMob}}" aria-label="Apri o chiudi il menu"><sc-if value="{{mob}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></sc-if><sc-if value="{{mobClosed}}" hint-placeholder-val="{{true}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></sc-if></button></header><sc-if value="{{mob}}" hint-placeholder-val="{{false}}"><nav class="mnav" aria-label="Menu principale (mobile)">
+<button class="mi" onClick="{{tMsGdd}}">Gestione del dato <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button><sc-if value="{{msGdd}}" hint-placeholder-val="{{false}}"><div class="msub"><button class="lnk" onClick="{{ext}}">Data Assessment</button><button class="lnk" onClick="{{ext}}">Data Integration</button><button class="lnk" onClick="{{ext}}">Data Platform &amp; Data Lake</button><button class="lnk" onClick="{{ext}}">BI &amp; Analytics</button><button class="lnk" onClick="{{ext}}">Reporting</button><button class="lnk" onClick="{{ext}}">AI &amp; Machine Learning</button><button class="lnk" onClick="{{ext}}">Application Maintenance</button><button class="lnk" onClick="{{ext}}">WEB APP</button></div></sc-if>
+<button class="mi" onClick="{{tMsTp}}">Tecnologie &amp; Partner <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button><sc-if value="{{msTp}}" hint-placeholder-val="{{false}}"><div class="msub"><button class="lnk" onClick="{{ext}}">Partner</button><button class="lnk" onClick="{{ext}}">Tecnologie per servizio</button></div></sc-if>
+<button class="mi on" onClick="{{tMsSol}}">Soluzioni AI <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button><sc-if value="{{msSol}}" hint-placeholder-val="{{true}}"><div class="msub">
+<a class="msol cur" href="../horizon/"><img src="./assets/dac0974421828592549731cd0ddac7a0.webp" alt="">Horizon</a><a class="msol lt" href="../itera/"><img src="./assets/3487a3aa9be57241285608b48302d209.webp" alt="">Itera</a>
+<a class="msol" href="../kapa/"><img src="./assets/82ea30eb8ffa0019e308933a5a5151b7.svg" alt="" style="height: 26px; border-radius: 0">Kapa</a></div></sc-if>
+<button class="mi" onClick="{{ext}}">Clienti</button><button class="mi" onClick="{{ext}}">Chi Siamo</button><button class="mi" onClick="{{ext}}">Eventi</button><button class="mi" onClick="{{ext}}" style="border-bottom: 0">Contatti</button></nav></sc-if></div><main><section class="hero" id="top"><div class="in hero-g"><div><div class="crumbs"><span>Home</span><span>/</span><span>Soluzioni AI</span><span>/</span><b>Horizon</b></div>
+<span class="plogo"><img src="./assets/dac0974421828592549731cd0ddac7a0.webp" alt="Horizon by BI Network"></span>
+<h1 class="h1"><span class="r">Dal forecast al budget,</span><span class="w">senza rincorrere file Excel.</span></h1>
+<p class="hdesc">La piattaforma che collega previsioni statistiche e pianificazione collaborativa, per costruire e approvare il budget in un unico processo.</p><div class="caps chain"><div class="cap"><span class="ci"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"></path><path d="M16 7h6v6"></path></svg></span><b>Forecast</b><small>Previsione statistica con affidabilità dichiarata</small></div><div class="cap"><span class="ci"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0"></path><path d="M6 12a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path><path d="M10 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path></svg></span><b>Target</b><small>Obiettivi distinti dalla previsione</small></div><div class="cap"><span class="ci"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"></path><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path></svg></span><b>Budget</b><small>Costruito con i responsabili</small></div><div class="cap"><span class="ci"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-4a2 2 0 0 1 -2 -2v-4a2 2 0 0 1 2 -2z"></path><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><path d="M15 13h4a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-4a2 2 0 0 1 -2 -2v-4a2 2 0 0 1 2 -2z"></path></svg></span><b>Workflow</b><small>Revisioni e approvazioni tracciate</small></div></div>
+<div class="ctas"><button class="btn btn-r" onClick="{{openDemo}}">Richiedi una demo</button><a class="btn btn-o" href="#come-funziona">Scopri come funziona</a></div></div><div class="hv hv-h"><div class="frame  "><div class="sp s-h_overview-627" role="img" aria-label="Overview di Horizon: KPI del forecast, affidabilità e trend Actual vs Forecast"></div></div>
+<span class="pin" style="left: 36%; top: -14px">Affidabilità dichiarata</span><span class="pin" style="right: 5%; top: 42%">Actual e Forecast</span>
+<div class="frame  wf"><div class="sp s-h_approve_row-409" role="img" aria-label="Workflow di approvazione lungo la gerarchia commerciale"></div></div><span class="pin" style="left: 30%; bottom: 66px">Approvazione lungo la gerarchia</span></div></div></section><div class="vb"><section class="sec"><div class="bxw"><div class="panel"><div class="in"><span class="pill">Il problema</span><h2 class="h2 dk">Il problema non è Excel: è un processo frammentato.</h2><p class="lead dk">Un budget commerciale coinvolge Direzione, capi area e agenti. A ogni passaggio si aggiungono file, versioni e verifiche.</p><div class="prob-g"><div class="prob"><div class="p"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span>Forecast e budget su file e strumenti diversi</span></div><div class="ar"></div><div class="lb">Con Horizon</div><div class="s"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Un unico processo, dai dati di partenza al budget approvato. Excel resta il formato per importare dati e scaricare report.</span></div></div><div class="prob"><div class="p"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span>Versioni non allineate e consolidamento manuale</span></div><div class="ar"></div><div class="lb">Con Horizon</div><div class="s"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Versioni numerate e confrontabili; le proposte si aggregano lungo la gerarchia commerciale.</span></div></div><div class="prob"><div class="p"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span>Previsioni, obiettivi e risultati difficili da confrontare</span></div><div class="ar"></div><div class="lb">Con Horizon</div><div class="s"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Actual, Forecast, Target e Budget restano distinti e il divario tra obiettivo e previsione è sempre leggibile.</span></div></div></div></div></div></div></section></div><div id="cf2"><section class="sec" id="come-funziona" aria-labelledby="hw2"><div class="bxw">
+<div class="shead"><div><span class="pill">Come funziona</span><h2 class="h2" id="hw2">Dai tuoi dati <em>al budget approvato</em></h2></div>
+<p class="lead">Due modi per iniziare, un unico processo condiviso fino all’approvazione.</p></div>
+<div class="flow" role="group" aria-label="Il percorso di Horizon in quattro momenti"><div class="lab l1"><span class="num">01</span><span class="lt">Parti dai tuoi dati</span></div><div class="lab l2"><span class="num">02</span><span class="lt">Scegli come iniziare</span></div><div class="lab l3"><span class="num">03</span><span class="lt">Costruisci e condividi il piano</span></div><div class="lab l4"><span class="num">04</span><span class="lt">Ottieni il budget approvato</span></div><div class="bd b1"><div class="card"><span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg></span><p class="ct">Una base comune e affidabile da cui avviare il processo.</p></div></div><div class="cxw fk" aria-hidden="true"><svg class="cx" viewBox="0 0 100 100" preserveAspectRatio="none"><path class="pa" d="M0 50 C50 50 50 24 100 24"></path><path class="pb" d="M0 50 C50 50 50 76 100 76"></path></svg><i class="dt s" style="left: 0%; top: 50%"></i><i class="dt a" style="left: 100%; top: 24%"></i><i class="dt b" style="left: 100%; top: 76%"></i></div><div class="vxw v1" aria-hidden="true"><svg class="vx" viewBox="0 0 100 96" preserveAspectRatio="none"><path class="ps" d="M50 0 V58"></path><path class="pa" d="M50 58 C50 80 25 72 25 96"></path><path class="pb" d="M50 58 C50 80 75 72 75 96"></path></svg><span class="vlab"><em>02</em>Scegli come iniziare</span><i class="dt s" style="left: 50%; top: 0%"></i><i class="dt a" style="left: 25%; top: 100%"></i><i class="dt b" style="left: 75%; top: 100%"></i></div><div class="bd b2"><div class="card opt oa"><span class="ico pico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="pband" d="M12 14.5 L21 4 L21 11.5 Z"></path><path class="phist" d="M3 18 L7 13.5 L9.5 15.5 L12 14.5"></path><path class="pfc" d="M12 14.5 L21 7.5"></path><circle class="pnow" cx="12" cy="14.5" r="1.7"></circle><circle class="pend" cx="21" cy="7.5" r="1.3"></circle></svg></span><div><h3>Prediction</h3><p class="ct">Parti da una proposta previsionale.</p></div></div>
+<span class="or">oppure</span>
+<div class="card opt ob"><span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.38 3.62a1 1 0 0 1 3 3L7.37 18.64a2 2 0 0 1-.86.5l-2.87.84a.5.5 0 0 1-.62-.62l.84-2.87a2 2 0 0 1 .5-.86z"></path></svg></span><div><h3>Planning diretto</h3><p class="ct">Costruisci il piano direttamente dai dati.</p></div></div></div><div class="cxw mg" aria-hidden="true"><svg class="cx" viewBox="0 0 100 100" preserveAspectRatio="none"><path class="pa" d="M0 24 C50 24 50 50 100 50"></path><path class="pb" d="M0 76 C50 76 50 50 100 50"></path></svg><i class="dt a" style="left: 0%; top: 24%"></i><i class="dt b" style="left: 0%; top: 76%"></i><i class="dt s" style="left: 100%; top: 50%"></i></div><div class="vxw v2" aria-hidden="true"><svg class="vx" viewBox="0 0 100 96" preserveAspectRatio="none"><path class="pa" d="M25 0 C25 24 50 16 50 38"></path><path class="pb" d="M75 0 C75 24 50 16 50 38"></path><path class="ps" d="M50 38 V96"></path></svg><span class="vlab"><em>03</em>Costruisci e condividi il piano</span><i class="dt a" style="left: 25%; top: 0%"></i><i class="dt b" style="left: 75%; top: 0%"></i><i class="dt s" style="left: 50%; top: 100%"></i></div><div class="bd b3"><div class="card"><p class="ct">Definisci gli obiettivi, raccogli i contributi dei diversi livelli commerciali e procedi con la revisione.</p>
+<ul class="mini3"><li><span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0"></path><path d="M6 12a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path><path d="M10 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path></svg></span>Obiettivi</li><li><span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>Contributi dei livelli commerciali</li><li><span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-4a2 2 0 0 1 -2 -2v-4a2 2 0 0 1 2 -2z"></path><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><path d="M15 13h4a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-4a2 2 0 0 1 -2 -2v-4a2 2 0 0 1 2 -2z"></path></svg></span>Revisione</li></ul></div></div><div class="cx ar" aria-hidden="true"><b class="dt s" style="left: 0%; top: 50%"></b><i></i><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></span></div><div class="vxw v3" aria-hidden="true"><b class="dt s" style="left: 50%; top: 0%"></b><i></i><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></span><span class="vlab"><em>04</em>Ottieni il budget approvato</span></div><div class="bd b4"><div class="card fin"><span class="big"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0"></path><path d="m9 12 2 2 4-4"></path></svg></span><h3>Budget approvato</h3><p class="ct">Un budget commerciale condiviso e approvato.</p></div></div></div>
+<p class="note">Due percorsi, un unico obiettivo: costruire e approvare un budget commerciale condiviso.</p>
+</div></section></div><section class="sec"><div class="bxw"><div class="shead"><div><span class="pill">I vantaggi</span><h2 class="h2">Prevedi<em>.</em> Pianifica<em>.</em> Decidi<em>.</em></h2></div><p class="lead">Tre benefici che collegano le capacità della piattaforma al lavoro quotidiano di chi prevede, pianifica e approva.</p></div><div class="pil-g"><article class="pil"><div class="ph"><div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"></path><path d="M16 7h6v6"></path></svg></div><h3>Prevedi con fiducia</h3></div><p class="tx">Dati controllati e previsioni statistiche con affidabilità dichiarata per ogni serie. Il modello viene selezionato automaticamente sulla base dello storico.</p><div class="mini"><small>Affidabilità per ogni serie prevista</small><div class="mrow"><span class="lv a">Alta</span><span class="lv m">Media</span><span class="lv b">Bassa</span></div></div></article><article class="pil"><div class="ph"><div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div><h3>Pianifica insieme</h3></div><p class="tx">Dal forecast al budget di area e agente: ogni responsabile contribuisce, mentre target e budget restano distinti dalla previsione statistica.</p><div class="mini"><small>Il budget si costruisce lungo la gerarchia</small><div class="hier"><div>Direzione Commerciale</div><div style="margin-left: 16px">Capo Area</div><div style="margin-left: 32px">Agente</div></div></div></article><article class="pil"><div class="ph"><div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></div><h3>Decidi con controllo</h3></div><p class="tx">Approvazioni a livelli, versioni confrontabili e modifiche tracciate; quando previsto, ogni variazione richiede una motivazione.</p><div class="mini"><small>Stati del workflow</small><div class="mrow"><span class="lv g">In lavorazione</span><span class="lv m">In revisione</span><span class="lv b">Rimandato</span><span class="lv a">Approvato</span></div></div></article></div></div></section><section class="sec"><div class="bxw"><div class="shead"><div><span class="pill">Funzionalità</span><h2 class="h2">Le aree della piattaforma</h2></div><p class="lead">Le aree che sostengono il percorso, mostrate con schermate della piattaforma.</p></div><div class="{{tabsCls}}" role="tablist" onScroll="{{tabScroll}}"><sc-for list="{{tabs}}" as="tb" hint-placeholder-count="4"><button class="{{tb.cls}}" role="tab" onClick="{{tb.pick}}">{{tb.t}}</button></sc-for></div>
+<div class="fp"><div><sc-if value="{{tab.isImg}}" hint-placeholder-val="{{true}}"><div class="frame flat {{tab.frameCls}}"><div class="{{tab.innerCls}}" role="img" aria-label="{{tab.t}}"></div></div></sc-if><sc-if value="{{tab.ill_events}}" hint-placeholder-val="{{false}}"><div class="frame flat r-1_6"><div class="ill"><div><h6>Eventi di Business</h6><div class="sb">Informazioni oggettive già note che possono influenzare la previsione</div></div>
+<div class="bx" style="flex: 1; display: flex; flex-direction: column; justify-content: center"><svg viewBox="0 0 400 150" style="width: 100%" role="img" aria-label="Proiezione dello storico e proiezione che considera un evento noto"><line x1="0" y1="135" x2="400" y2="135" stroke="#e3e5ee"></line><polyline points="0,100 30,96 60,98 90,90 120,92 150,86 180,88 210,82" fill="none" stroke="#1d2433" stroke-width="2.4"></polyline><line x1="210" y1="12" x2="210" y2="135" stroke="#b6bccb" stroke-dasharray="4 4"></line><polyline points="210,82 250,80 290,78 330,77 370,75 400,74" fill="none" stroke="#9aa1b3" stroke-width="2" stroke-dasharray="6 5"></polyline><line x1="290" y1="12" x2="290" y2="135" stroke="#E42931" stroke-dasharray="3 3"></line><polyline points="210,82 250,80 290,78 310,62 340,56 370,52 400,50" fill="none" stroke="#E42931" stroke-width="2.6"></polyline><circle cx="290" cy="78" r="5" fill="#E42931"></circle><rect x="236" y="14" width="108" height="22" rx="11" fill="#E42931"></rect><text x="290" y="29" text-anchor="middle" font-size="11" font-family="Poppins, Arial" fill="#fff">Lancio di prodotto</text></svg>
+<div class="rw" style="gap: 16px; font-size: 11px; color: #5d6478; margin-top: 6px; flex-wrap: wrap"><span>━ Storico</span><span>┅ Proiezione dello storico</span><span style="color: #c62830">━ Con l’evento</span></div></div>
+<div class="rw" style="flex-wrap: wrap; gap: 6px"><span class="st gr">Aperture o chiusure</span><span class="st gr">Lanci di prodotto</span><span class="st gr">Promozioni</span><span class="st gr">Variazioni di prezzo</span><span class="st gr">Investimenti o costi</span></div><span class="itag">Rappresentazione illustrativa</span></div></div></sc-if><sc-if value="{{tab.ill_po}}" hint-placeholder-val="{{false}}"><div class="frame flat r-1_6"><div class="ill" style="justify-content: center"><div class="rw" style="gap: 14px; align-items: stretch">
+<div class="bx" style="flex: 1"><div class="rw" style="justify-content: space-between"><b style="font-size: 13px">RDA</b><span class="st ok">Approvata</span></div><div style="display: flex; flex-direction: column; gap: 9px; margin-top: 14px"><div class="skl" style="width: 80%"></div><div class="skl" style="width: 60%"></div><div class="skl" style="width: 70%"></div><div class="skl" style="width: 45%"></div></div><div class="rw" style="margin-top: 14px; gap: 6px; flex-wrap: wrap"><span class="st gr">Fornitore</span><span class="st gr">Righe di costo</span></div></div>
+<div style="display: flex; align-items: center; color: #E42931"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div>
+<div class="bx" style="flex: 1; border-color: #E42931; box-shadow: 0 10px 24px rgba(228,41,49,.15)"><div class="rw" style="justify-content: space-between; flex-wrap: wrap; gap: 6px"><b style="font-size: 13px">Ordine (PO)</b><span class="st rd">N. PO dedicato</span></div><div style="display: flex; flex-direction: column; gap: 9px; margin-top: 14px"><div class="skl" style="width: 75%"></div><div class="skl" style="width: 55%"></div><div class="skl" style="width: 65%"></div><div class="skl" style="width: 40%"></div></div><div class="rw" style="margin-top: 14px"><span class="st gr">Dalla RDA approvata</span></div></div>
+</div><span class="itag">Rappresentazione illustrativa</span></div></div></sc-if><sc-if value="{{tab.ill_receipt}}" hint-placeholder-val="{{false}}"><div class="frame flat r-1_6"><div class="ill"><div><h6>Entrate merce</h6><div class="sb">Registrazione sugli ordini approvati</div></div><div class="bx"><div class="rw" style="justify-content: space-between"><div class="rw"><span style="color: #E42931; display: flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><path d="M15 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path><path d="M5 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path></svg></span><b style="font-size: 13px">Ordine (PO)</b></div><span class="st wt">Entrata parziale</span></div><div class="bar" style="margin-top: 12px"><i style="width: 55%; background: #E42931"></i></div></div><div class="bx"><div class="rw" style="justify-content: space-between"><div class="rw"><span style="color: #E42931; display: flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><path d="M15 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path><path d="M5 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path></svg></span><b style="font-size: 13px">Ordine (PO)</b></div><span class="st ok">Entrata totale</span></div><div class="bar" style="margin-top: 12px"><i style="width: 100%; background: #1a7f41"></i></div></div><div class="bx"><div class="rw" style="justify-content: space-between"><div class="rw"><span style="color: #E42931; display: flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><path d="M15 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path><path d="M5 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path></svg></span><b style="font-size: 13px">Ordine (PO)</b></div><span class="st gr">Da consegnare</span></div><div class="bar" style="margin-top: 12px"><i style="width: 0%; background: #E42931"></i></div></div><span class="itag">Rappresentazione illustrativa</span></div></div></sc-if><sc-if value="{{tab.ill_invoice}}" hint-placeholder-val="{{false}}"><div class="frame flat r-1_6"><div class="ill"><div><h6>Approvazione fatture</h6><div class="sb">Fatture registrate sulle entrate merce</div></div>
+<div class="bx" style="padding: 0; overflow: hidden"><div class="rw" style="padding: 10px 14px; background: #f8f9fc; font-size: 11px; color: #5d6478; font-weight: 600"><span style="flex: 1.1">Fattura</span><span style="flex: 1.7">Collegata a</span><span style="flex: 1; text-align: right">Stato pagamento</span></div><div class="rw" style="padding: 12px 14px; border-top: 1px solid #eef0f5"><span style="flex: 1.1"><div class="skl" style="width: 70%"></div></span><span style="flex: 1.7; display: flex; gap: 5px; flex-wrap: wrap"><span class="st gr">RDA</span><span class="st gr">PO</span><span class="st gr">Entrata merce</span></span><span style="flex: 1; text-align: right"><span class="st wt">In attesa</span></span></div><div class="rw" style="padding: 12px 14px; border-top: 1px solid #eef0f5"><span style="flex: 1.1"><div class="skl" style="width: 70%"></div></span><span style="flex: 1.7; display: flex; gap: 5px; flex-wrap: wrap"><span class="st gr">RDA</span><span class="st gr">PO</span><span class="st gr">Entrata merce</span></span><span style="flex: 1; text-align: right"><span class="st ok">Approvata</span></span></div><div class="rw" style="padding: 12px 14px; border-top: 1px solid #eef0f5"><span style="flex: 1.1"><div class="skl" style="width: 70%"></div></span><span style="flex: 1.7; display: flex; gap: 5px; flex-wrap: wrap"><span class="st gr">RDA</span><span class="st gr">PO</span><span class="st gr">Entrata merce</span></span><span style="flex: 1; text-align: right"><span class="st no">Rifiutata</span></span></div></div>
+<div class="rw" style="gap: 8px; justify-content: flex-end"><span class="st" style="background: #fff; border: 1px solid #e3e5ee; color: #4b5266; padding: 9px 14px">Rifiuta</span><span class="st rd" style="padding: 9px 14px">Approva il pagamento</span></div><span class="itag">Rappresentazione illustrativa</span></div></div></sc-if><sc-if value="{{tab.ill_runs}}" hint-placeholder-val="{{false}}"><div class="frame flat r-1_6"><div class="ill"><div><h6>Scenari</h6><div class="sb">Confronto tra due Proposal Run completati</div></div><div class="rw" style="gap: 12px; flex: 1; align-items: stretch"><div class="bx" style="flex: 1; display: flex; flex-direction: column; gap: 9px"><div class="rw" style="justify-content: space-between"><b style="font-size: 13px">Proposal Run A</b><span class="st gr">Immutabile</span></div><svg viewBox="0 0 200 70" style="width: 100%" aria-hidden="true"><polyline points="0,50 25,46 50,48 75,40 100,42" fill="none" stroke="#1d2433" stroke-width="2"></polyline><polyline points="100,42 125,40 150,38 175,37 200,35" fill="none" stroke="#E42931" stroke-width="2.4"></polyline><line x1="100" y1="4" x2="100" y2="66" stroke="#b6bccb" stroke-dasharray="3 3"></line></svg><div class="rw" style="justify-content: space-between"><div class="skl" style="width: 55%"></div><span class="st ok">Alta</span></div><div class="rw" style="justify-content: space-between"><div class="skl" style="width: 55%"></div><span class="st wt">Media</span></div><div class="rw" style="justify-content: space-between"><div class="skl" style="width: 55%"></div><span class="st no">Bassa</span></div><div style="font-size: 11px; color: #5d6478">Modello selezionato automaticamente</div></div><div class="bx" style="flex: 1; display: flex; flex-direction: column; gap: 9px"><div class="rw" style="justify-content: space-between"><b style="font-size: 13px">Proposal Run B</b><span class="st gr">Immutabile</span></div><svg viewBox="0 0 200 70" style="width: 100%" aria-hidden="true"><polyline points="0,50 25,46 50,48 75,40 100,42" fill="none" stroke="#1d2433" stroke-width="2"></polyline><polyline points="100,42 125,36 150,30 175,28 200,24" fill="none" stroke="#E42931" stroke-width="2.4"></polyline><line x1="100" y1="4" x2="100" y2="66" stroke="#b6bccb" stroke-dasharray="3 3"></line></svg><div class="rw" style="justify-content: space-between"><div class="skl" style="width: 55%"></div><span class="st ok">Alta</span></div><div class="rw" style="justify-content: space-between"><div class="skl" style="width: 55%"></div><span class="st wt">Media</span></div><div class="rw" style="justify-content: space-between"><div class="skl" style="width: 55%"></div><span class="st no">Bassa</span></div><div style="font-size: 11px; color: #5d6478">Modello selezionato automaticamente</div></div></div><span class="itag">Rappresentazione illustrativa</span></div></div></sc-if></div><div><h3>{{tab.t}}</h3><p>{{tab.d}}</p><ul><sc-for list="{{tab.b}}" as="bl" hint-placeholder-count="3"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>{{bl}}</span></li></sc-for></ul></div></div>
+<div class="more"><small>Anche nella piattaforma</small><span class="chip">Eventi di Business</span><span class="chip">Misure e dipendenze configurabili</span><span class="chip">Dashboard di accuratezza del forecast</span><span class="chip">Configurazione dell’organizzazione commerciale</span></div></div></section><section class="sec"><div class="bxw"><span class="pill">A chi si rivolge</span><h2 class="h2">Per chi costruisce il budget insieme</h2><div class="roles"><div class="role"><span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg></span><b>Direzione Commerciale</b><span>Dal forecast al budget di area e agente, con il target sotto controllo.</span></div><div class="role"><span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg></span><b>Finance e Controlling</b><span>Un budget coordinato, con versioni e approvazioni tracciate.</span></div><div class="role"><span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path></svg></span><b>Capi Area</b><span>Una proposta costruita sui dati, da correggere e inviare.</span></div><div class="role"><span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><path d="M8 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path></svg></span><b>Agenti e venditori</b><span>Una proposta da completare e inviare con un processo guidato.</span></div></div></div></section><div class="bxw ctaw"><section class="cta"><div class="in"><span class="pill">Demo</span><h3>Richiedi una demo di Horizon</h3><p>Scopri come collegare previsione e pianificazione in un unico processo condiviso.</p>
+<div class="ctas"><button class="btn btn-r" onClick="{{openDemo}}">Richiedi una demo</button></div></div></section></div><section class="rel" aria-labelledby="rel-t"><div class="bxw"><h2 class="h2" id="rel-t"><span>Soluzioni AI</span> correlate</h2><div class="rel-g"><a class="ri" href="../itera/" aria-label="Itera: vai alla pagina"><span class="tagp">Gestione degli acquisti aziendali</span><span class="lg"><svg width="86" height="72" viewBox="0 0 60 50" role="img" aria-label="Itera"><rect x="4" y="9" width="11" height="32" rx="3" fill="#8f8f8f"></rect><path d="M19 6 L55 25 L19 44 Z" fill="#E42931"></path></svg></span><h3>Itera</h3><p>Dalla richiesta al controllo delle spese.</p>
+<span class="arb" aria-hidden="true"><i><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></i></span></a><a class="ri" href="../kapa/" aria-label="Kapa: vai alla pagina"><span class="tagp">Gestione operativa dei servizi professionali</span><span class="lg"><img src="./assets/3cb0f8fb34ba59ba31778ec3293ef03c.svg" alt="Kapa by BI Network" style="height: 64px; border-radius: 0"></span><h3>Kapa</h3><p>Il quadro completo del lavoro.</p>
+<span class="arb" aria-hidden="true"><i><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></i></span></a></div></div></section></main><footer class="foot"><div class="sep" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2c.6 5.4 4.6 9.4 10 10-5.4.6-9.4 4.6-10 10-.6-5.4-4.6-9.4-10-10 5.4-.6 9.4-4.6 10-10Z"></path></svg></div><div class="in fg">
+<div><span class="flogo"><svg role="img" aria-label="BI Network" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 321 66" fill="none"><path fill="#E42931" d="M107.2 42.3C107.2 46.3 104.9 47.9 102.3 47.9C100.1 47.9 98.5 47.3 97.2 45.9L82.9 29.3C82.7 29.0 82.5 28.9 82.3 28.9C81.9 28.9 81.6 29.2 81.6 29.7V47.4H74.7V26.8C74.7 22.3 77.3 20.7 80.8 20.7C83.3 20.7 84.8 21.3 86.4 23.2L99.2 38.5C99.4 38.8 99.6 38.8 99.9 38.8C100.2 38.8 100.4 38.6 100.4 38.1V21.2H107.2V42.3Z"></path><path fill="#E42931" d="M138.5 21.2V28.2H118.7C118.3 28.2 118.1 28.4 118.1 28.8V31.8H138.4V36.8H118.1V40.0C118.1 40.5 118.3 40.7 118.7 40.7H138.5V47.4H114.7C112.3 47.4 111.1 46.2 111.1 43.7V24.8C111.1 22.4 112.3 21.2 114.8 21.2H138.5Z"></path><path fill="#E42931" d="M170.6 21.2V28.2H159.2V47.4H152.1V28.2H140.7V21.2H170.6Z"></path><path fill="#E42931" d="M195.5 27.7L191.5 42.1C190.3 46.1 187.9 47.9 183.9 47.9C179.1 47.9 176.8 45.4 176.3 42.1L173.1 22.5C173.0 22.1 172.9 21.7 172.9 21.2H180.3C180.3 21.5 180.4 21.9 180.4 22.2L183.1 40.1C183.2 40.7 183.5 41.0 184.1 41.0C184.5 41.0 184.8 40.8 185.0 40.2L189.0 26.2C190.1 22.4 192.1 20.7 196.4 20.7C200.5 20.7 202.5 22.4 203.5 26.0L207.4 40.2C207.5 40.8 207.8 41.0 208.3 41.0C208.8 41.0 209.1 40.7 209.2 40.1L212.2 22.2C212.3 21.9 212.3 21.6 212.3 21.2H219.6C219.6 21.7 219.5 22.1 219.5 22.5L216.0 42.1C215.4 45.6 213.1 47.9 208.3 47.9C204.4 47.9 202.0 46.0 201.0 42.1L197.2 27.7C197.1 27.1 196.8 26.9 196.4 26.9C195.9 26.9 195.7 27.1 195.5 27.7Z"></path><path fill="#E42931" d="M234.3 47.4C229.6 47.4 226.2 45.8 223.8 43.1C221.7 40.8 220.4 37.7 220.4 34.3C220.4 32.5 220.8 30.7 221.5 29.1C222.2 27.4 223.3 25.9 224.6 24.7C226.9 22.6 230.1 21.2 234.3 21.2H239.8C244.0 21.2 247.1 22.6 249.4 24.7C250.8 25.9 251.8 27.4 252.5 29.1C253.3 30.7 253.6 32.5 253.6 34.3C253.6 37.7 252.4 40.8 250.3 43.1C247.9 45.8 244.4 47.4 239.8 47.4H234.3ZM234.3 28.2C231.9 28.2 230.4 28.8 229.3 29.9C228.7 30.4 228.2 31.1 227.9 31.9C227.6 32.7 227.4 33.5 227.4 34.3C227.4 35.9 228.0 37.4 229.0 38.5C230.1 39.7 231.8 40.5 234.3 40.5H239.8C242.2 40.5 243.9 39.7 245.0 38.5C246.1 37.4 246.6 35.9 246.6 34.3C246.6 33.5 246.5 32.7 246.1 31.9C245.8 31.1 245.3 30.4 244.7 29.9C243.6 28.8 242.1 28.2 239.8 28.2H234.3Z"></path><path fill="#E42931" d="M264.0 47.4H257.0V22.9C257.0 21.8 257.6 21.2 258.7 21.2H277.3C280.5 21.2 282.5 22.2 284.0 23.7C285.2 25.1 286.1 26.9 286.1 28.9C286.1 30.9 285.4 32.9 283.6 34.3C285.3 35.3 286.1 36.7 286.1 39.7V44.9C286.1 45.7 286.1 46.6 286.2 47.4H279.1C279.1 46.8 279.0 46.2 279.0 45.6V40.4C279.0 38.8 278.2 38.1 276.2 38.1H264.0V47.4ZM276.4 32.1C277.3 32.1 277.9 31.8 278.3 31.3C278.7 30.9 278.8 30.4 278.8 29.9C278.8 29.4 278.6 28.9 278.3 28.5C277.9 28.0 277.3 27.8 276.4 27.8H264.6C264.2 27.8 264.0 28.0 264.0 28.4V32.1L276.4 32.1Z"></path><path fill="#E42931" d="M296.6 21.2V31.9L308.5 22.3C308.9 22.0 309.3 21.6 309.6 21.2H319.4C319.2 21.5 318.9 21.7 318.7 21.9L304.3 33.1C304.2 33.1 304.2 33.2 304.1 33.3C304.1 33.3 304.1 33.4 304.1 33.5C304.1 33.7 304.1 33.8 304.3 33.9L319.7 46.4C320.1 46.7 320.4 47.0 320.7 47.4H310.3C309.9 47.0 309.5 46.6 309.1 46.3L296.6 35.8V47.4H289.5V21.2H296.6Z"></path><path fill="#fff" d="M32.0 7.5C17.4 7.5 5.6 19.3 5.6 33.9C5.6 48.5 17.4 60.3 32.0 60.3C46.6 60.3 58.4 48.5 58.4 33.9C58.4 19.3 46.6 7.5 32.0 7.5Z"></path><path fill="#fff" d="M61.6 21.4C60.9 19.8 60.1 18.3 59.2 16.8C59.2 16.8 59.1 16.7 59.1 16.7C59.0 16.6 58.9 16.6 58.8 16.6H58.8C58.7 16.6 58.6 16.7 58.5 16.7C58.5 16.7 58.4 16.8 58.4 16.9C58.3 16.9 58.3 17.0 58.3 17.1C58.3 17.2 58.3 17.2 58.4 17.3C61.3 22.0 63.0 27.4 63.1 33.0C63.3 38.6 62.0 44.1 59.3 49.0C56.6 53.8 52.6 57.9 47.8 60.7C43.0 63.6 37.6 65.0 32.0 65.0C26.5 65.0 21.0 63.6 16.2 60.7C11.4 57.9 7.4 53.8 4.8 49.0C2.1 44.1 0.7 38.6 0.9 33.0C1.0 27.4 2.7 22.0 5.7 17.3C5.7 17.2 5.7 17.2 5.7 17.1C5.7 17.0 5.7 16.9 5.7 16.9C5.6 16.8 5.6 16.7 5.5 16.7C5.4 16.7 5.4 16.6 5.3 16.6H5.2C5.1 16.6 5.0 16.6 5.0 16.7C4.9 16.7 4.9 16.8 4.8 16.8C1.9 21.5 0.2 26.9 0.0 32.4C-0.2 37.9 0.9 43.3 3.4 48.3C5.9 53.2 9.6 57.4 14.1 60.5C18.7 63.5 24.0 65.4 29.5 65.8C35.0 66.3 40.5 65.3 45.5 63.0C50.5 60.7 54.8 57.1 58.0 52.6C61.2 48.2 63.3 42.9 63.9 37.5C64.5 32.0 63.7 26.4 61.6 21.4L61.6 21.4Z"></path><path fill="#2E2E2E" d="M33.0 33.1C35.5 32.2 37.0 30.0 37.0 27.3C37.0 23.1 33.4 20.5 27.4 20.5H15.8C15.7 20.6 15.5 20.6 15.4 20.7H15.3V20.8C15.2 20.9 15.1 21.1 15.1 21.3V46.6C15.1 46.8 15.2 46.9 15.3 47.1V47.1H15.4C15.5 47.2 15.7 47.3 15.8 47.3H27.9C34.1 47.3 38.0 44.4 38.0 39.8C38.0 36.5 36.1 34.0 33.0 33.1ZM21.5 26.1C21.5 26.0 21.5 25.9 21.6 25.9C21.6 25.8 21.7 25.8 21.8 25.8H27.1C29.3 25.8 30.6 26.7 30.6 28.4C30.6 28.4 30.6 28.5 30.6 28.5C30.6 28.5 30.6 28.5 30.6 28.5C30.6 30.2 29.3 31.2 27.1 31.2H21.8C21.8 31.2 21.7 31.2 21.7 31.2C21.6 31.1 21.6 31.1 21.6 31.1C21.5 31.0 21.5 31.0 21.5 31.0C21.5 30.9 21.5 30.9 21.5 30.8V26.1ZM31.5 39.2C31.5 41.0 29.9 42.1 27.1 42.1H21.8C21.8 42.1 21.7 42.1 21.7 42.0C21.6 42.0 21.6 42.0 21.6 42.0C21.5 41.9 21.5 41.9 21.5 41.9C21.5 41.8 21.5 41.8 21.5 41.7V36.5C21.5 36.4 21.5 36.3 21.6 36.2C21.6 36.2 21.7 36.1 21.8 36.1H27.1C29.9 36.1 31.5 37.2 31.5 39.0C31.5 39.1 31.5 39.1 31.5 39.1C31.5 39.1 31.5 39.1 31.5 39.2H31.5Z"></path><path fill="#2E2E2E" d="M43.9 20.6C42.9 20.6 41.9 20.9 41.1 21.5C40.2 22.1 39.6 22.9 39.3 23.9C38.9 24.8 38.9 25.9 39.2 26.9C39.4 27.9 40.0 28.7 40.8 29.4V46.8C40.8 46.9 40.9 47.1 41.0 47.2V47.3H41.0C41.2 47.4 41.3 47.5 41.5 47.5H46.4C46.5 47.5 46.7 47.4 46.8 47.3H46.9V47.2C47.0 47.1 47.1 46.9 47.1 46.8V29.4C47.9 28.7 48.4 27.9 48.7 26.9C49.0 25.9 48.9 24.8 48.6 23.9C48.3 22.9 47.6 22.1 46.8 21.5C45.9 20.9 45.0 20.6 43.9 20.6H43.9ZM46.6 27.2C46.2 27.8 45.5 28.3 44.8 28.5C44.1 28.7 43.3 28.7 42.6 28.4C42.0 28.0 41.4 27.5 41.1 26.8C40.8 26.1 40.7 25.4 41.0 24.6C41.2 23.9 41.6 23.3 42.3 22.9C42.9 22.5 43.7 22.3 44.4 22.4C45.1 22.6 45.8 22.9 46.3 23.5C46.8 24.1 47.1 24.8 47.1 25.5C47.1 26.1 46.9 26.7 46.6 27.2Z"></path></svg></span><p class="ftag"><span class="r">Oltre il dato,</span> verso il valore <span class="rocket"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg></span></p><p class="fsub">Trasformiamo dati in decisioni e decisioni in crescita sostenibile</p><button class="fbtn" onClick="{{ext}}">Richiedi una consulenza <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button></div>
+<div><div class="fc"><span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path></svg></span><div><b>SEDI</b><span>Milano</span><span>Arco</span><span>Firenze</span></div></div><div class="fc"><span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2z"></path><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span><div><b>EMAIL</b><span>info@binetwork.it</span></div></div><div class="fc"><span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span><div><b>TELEFONO</b><span>+39 0464 663703</span></div></div></div>
+<div class="fs"><b>SEGUICI</b><p>Insight, eventi e innovazione data-driven</p><div class="soc"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><path d="M2 9h4v12h-4z"></path><path d="M2 4a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path></svg></i>Linkedin</div><div class="soc"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></i>Facebook</div><div class="soc"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1 -5 5h-10a5 5 0 0 1 -5 -5v-10a5 5 0 0 1 5 -5z"></path><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><path d="M17.5 6.5h.01"></path></svg></i>Instagram</div></div>
+</div><div class="fbar"><div class="in"><span>© 2026 BI Network S.r.l. - P.IVA 02238260224 | Sede legale: Via San Cristoforo, 6 - 38062 Arco - Trento (TN) - Italy</span><nav aria-label="Note legali"><span>Privacy Policy</span><span>Cookie Policy</span><span>Termini e condizioni</span></nav></div></div></footer><sc-if value="{{demo}}" hint-placeholder-val="{{false}}"><div class="ov"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="dm">
+<button class="xb" aria-label="Chiudi" onClick="{{closeDemo}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button><span class="pill">Anteprima modulo</span><h4 id="dm">Richiedi una demo</h4>
+<p>Nel sito il pulsante aprirà il modulo contatti con il prodotto già selezionato. In questo mockup l’invio non è attivo.</p>
+<div class="fld"><label for="f1">Prodotto</label><select id="f1"><option value="horizon" selected="">Horizon</option><option value="itera">Itera</option></select></div>
+<div class="fld"><label for="f2">Nome e cognome</label><input id="f2" autocomplete="off"></div>
+<div class="fld"><label for="f3">Azienda</label><input id="f3" autocomplete="off"></div>
+<div class="fld"><label for="f4">Email aziendale</label><input id="f4" type="email" autocomplete="off"></div>
+<div class="ctas" style="margin-top: 24px"><button class="btn btn-r" style="opacity: .5; cursor: not-allowed" disabled="">Invio non attivo nel mockup</button></div></div></div></sc-if>
+<sc-if value="{{showToast}}" hint-placeholder-val="{{false}}"><div class="toast" role="status">{{toast}}</div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview": {"width": 1440, "height": 6900}}'>
+
+class Component extends DCLogic {
+  state = { menu: null, mob: false, msub: 'sol', mode: 'pred', step: 0, tab: 0, demo: false, toast: '' };
+  data() { return {"mobile": false, "modes": [{"id": "pred", "label": "Prediction", "seq": ["Baseline", "Proposal Run", "Planning", "Workflow", "Budget approvato"], "active": [1, 2, 3, 4, 5, 6], "note": "Si parte dai dati, si genera una previsione e la si usa come base per costruire il budget."}, {"id": "dir", "label": "Planning diretto", "seq": ["Baseline", "Planning", "Workflow", "Budget approvato"], "active": [1, 4, 5, 6], "note": "Si governa il budget senza generare prima un nuovo forecast: utile anche quando si parte da un file Excel."}], "steps": [{"t": "Comprendere i dati", "d": "Raccoglie e organizza i dati storici secondo il modello di business: consuntivi, elaborazioni precedenti, piani approvati o file Excel. I controlli verificano qualità e coerenza della base dati.", "v": "Partire da una base dati condivisa, verificabile e sufficientemente affidabile.", "tags": ["Data Hub", "Data Import", "Data Quality"], "img": "h_dq", "isImg": true, "frameCls": "r-1_6 fr-pad", "innerCls": "sp s-h_dq-658", "ill_events": false, "ill_po": false, "ill_receipt": false, "ill_invoice": false, "ill_runs": false, "hasBudget": false, "budget": ""}, {"t": "Considerare ciò che sta cambiando", "d": "Rappresenta eventi di business già conosciuti, come aperture o chiusure, lanci di prodotto, promozioni, variazioni di prezzo, investimenti o costi, e ne valuta gli effetti sui risultati.", "v": "Integrare nella lettura del futuro ciò che la sola proiezione dello storico non mostra.", "tags": ["Prediction", "Eventi di Business"], "ill": "events", "isImg": false, "frameCls": "", "innerCls": "", "ill_events": true, "ill_po": false, "ill_receipt": false, "ill_invoice": false, "ill_runs": false, "hasBudget": false, "budget": ""}, {"t": "Costruire proposte previsionali", "d": "Elabora proposte previsionali con modelli statistici. Il motore seleziona automaticamente il modello per ogni serie e restituisce un livello di affidabilità.", "v": "Un punto di partenza quantitativo, con il grado di affidabilità della previsione in evidenza.", "tags": ["Proposal Run", "Modelli", "Affidabilità"], "img": "h_overview", "isImg": true, "frameCls": "r-1_6 fr-pad", "innerCls": "sp s-h_overview-627", "ill_events": false, "ill_po": false, "ill_receipt": false, "ill_invoice": false, "ill_runs": false, "hasBudget": false, "budget": ""}, {"t": "Definire gli obiettivi", "d": "Il management definisce i target commerciali e li distribuisce lungo la struttura organizzativa, mantenendoli distinti dalla previsione statistica.", "v": "Chiarire dove l’azienda vuole arrivare e confrontarlo con i risultati previsti.", "tags": ["Planning", "Target"], "img": "h_target", "isImg": true, "frameCls": "r-1_6 fr-pad", "innerCls": "sp s-h_target-551", "ill_events": false, "ill_po": false, "ill_receipt": false, "ill_invoice": false, "ill_runs": false, "hasBudget": false, "budget": ""}, {"t": "Costruire il piano", "d": "I responsabili modificano i valori, distribuiscono gli obiettivi, allocano le misure e aggiornano il piano. I risultati collegati si aggiornano e rendono visibili gli effetti delle decisioni.", "v": "Trasformare previsioni e obiettivi in un piano operativo condiviso.", "tags": ["Planning Version", "Allocazione", "Blocco righe"], "img": "h_plan", "isImg": true, "frameCls": "r-1_6 fr-pad", "innerCls": "sp s-h_plan-746", "ill_events": false, "ill_po": false, "ill_receipt": false, "ill_invoice": false, "ill_runs": false, "hasBudget": false, "budget": ""}, {"t": "Confrontare e approvare", "d": "Confronta versioni, valuta gli scostamenti e gestisce revisioni, invii e approvazioni lungo la gerarchia commerciale, mantenendo traccia delle modifiche.", "v": "Rendere il piano misurabile, condiviso e controllabile.", "tags": ["Workflow", "Confronto", "Audit trail"], "img": "h_wf", "isImg": true, "frameCls": "r-1_6 fr-pad", "innerCls": "sp s-h_wf-559", "ill_events": false, "ill_po": false, "ill_receipt": false, "ill_invoice": false, "ill_runs": false, "hasBudget": false, "budget": ""}], "tabs": [{"t": "Data Hub e Data Quality", "img": "h_baseline", "d": "Le baseline raccolgono i dati di partenza: consuntivi, Proposal Run, piani approvati o file Excel. Ogni baseline ha il proprio report di qualità.", "b": ["Import da Excel con mappatura delle colonne ed error report", "Controlli strutturali, di completezza, coerenza e statistici", "Regole bloccanti prima di pubblicare una baseline"], "isImg": true, "frameCls": "r-1_6 fr-pad", "innerCls": "sp s-h_baseline-797", "ill_events": false, "ill_po": false, "ill_receipt": false, "ill_invoice": false, "ill_runs": false, "hasBudget": false, "budget": ""}, {"t": "Prediction e Scenari", "ill": "runs", "d": "Ogni previsione generata è una fotografia immutabile: due Proposal Run completati si confrontano fianco a fianco.", "b": ["Modello statistico selezionato automaticamente per ogni serie", "Affidabilità Alta, Media o Bassa per ogni serie prevista", "Eventi di Business: informazioni oggettive già note, come il lancio di un prodotto"], "isImg": false, "frameCls": "", "innerCls": "", "ill_events": false, "ill_po": false, "ill_receipt": false, "ill_invoice": false, "ill_runs": true, "hasBudget": false, "budget": ""}, {"t": "Target e Planning", "img": "h_versions", "d": "Versioni di budget collaborative, create da una baseline pubblicata o da un Proposal Run: modifica, allocazione, blocco, confronto, audit trail e note.", "b": ["Target assegnati dal management e distribuiti sulle unità", "Una versione di budget alla volta, confrontabile con le altre", "Avanzamento delle unità lungo la gerarchia"], "isImg": true, "frameCls": "r-1_6 fr-pad", "innerCls": "sp s-h_versions-631", "ill_events": false, "ill_po": false, "ill_receipt": false, "ill_invoice": false, "ill_runs": false, "hasBudget": false, "budget": ""}, {"t": "Workflow e Reporting", "img": "h_myact", "d": "Ogni responsabile trova le proprie attività: proposte da inviare, da approvare o rimandate, per tutte le versioni in corso.", "b": ["Gerarchia Direzione Commerciale, Capo Area, Agente", "Soglie per motivazioni e commenti", "Report scaricabili in Excel: forecast, budget per unità, budget vs consuntivo, audit trail"], "isImg": true, "frameCls": "r-1_6 fr-pad", "innerCls": "sp s-h_myact-344", "ill_events": false, "ill_po": false, "ill_receipt": false, "ill_invoice": false, "ill_runs": false, "hasBudget": false, "budget": ""}]}; }
+  openMenu(k) { clearTimeout(this._mt); this._hoverAt = Date.now(); if (this.state.menu !== k) this.setState({ menu: k }); }
+  closeMenuSoon() { clearTimeout(this._mt); this._mt = setTimeout(() => this.setState({ menu: null }), 160); }
+  toggleMenu(k) { clearTimeout(this._mt); const justHovered = this.state.menu === k && Date.now() - (this._hoverAt || 0) < 700; this.setState({ menu: this.state.menu === k && !justHovered ? null : k }); }
+  setMode(id) {
+    const D = this.data(); const m = D.modes.find(x => x.id === id);
+    const st = m.active.includes(this.state.step + 1) ? this.state.step : m.active[0] - 1;
+    this.setState({ mode: id, step: st });
+  }
+  renderVals() {
+    const D = this.data(); const s = this.state; const N = D.steps.length;
+    const m = D.modes ? D.modes.find(x => x.id === s.mode) : null;
+    const active = m ? m.active : D.steps.map((x, i) => i + 1);
+    const steps = D.steps.map((x, i) => {
+      const on = active.includes(i + 1); const open = s.step === i;
+      return Object.assign({}, x, { n: i + 1, skip: !on, open: open,
+        cls: 'step' + (open ? ' on' : '') + (on ? '' : ' skip'),
+        accCls: 'ai' + (open ? ' on' : '') + (on ? '' : ' skip'),
+        pick: () => { if (on) this.setState({ step: open && D.mobile ? -1 : i }); } });
+    });
+    const curI = s.step < 0 ? 0 : s.step; const NN = Math.max(N, 1);
+    const onIdx = steps.filter(x => !x.skip).map(x => x.n - 1);
+    const pos = onIdx.indexOf(curI);
+    const tabs = D.tabs.map((x, i) => Object.assign({}, x, { cls: 'tab' + (s.tab === i ? ' on' : ''), pick: () => this.setState({ tab: i }) }));
+    const flash = (msg) => { clearTimeout(this._t); this.setState({ toast: msg, menu: null }); this._t = setTimeout(() => this.setState({ toast: '' }), 2600); };
+    return {
+      steps: steps, cur: steps[curI], tabs: tabs, tab: tabs[s.tab], tabsCls: 'tabs' + (s.tabEnd ? ' tend' : ''), tabScroll: (e) => { const t = e && (e.currentTarget || e.target); if (!t || t.scrollWidth === undefined) return; const end = t.scrollLeft + t.clientWidth >= t.scrollWidth - 6; if (end !== !!this.state.tabEnd) this.setState({ tabEnd: end }); },
+      curLabel: 'Passaggio ' + (curI + 1) + ' di ' + N + (m && s.mode === 'dir' ? ', Planning diretto' : ''),
+      posLabel: (pos + 1) + ' / ' + onIdx.length,
+      progress: (curI * 100 / NN).toFixed(3) + '%',
+      prevCls: 'rb' + (pos <= 0 ? ' off' : ''), nextCls: 'rb' + (pos >= onIdx.length - 1 ? ' off' : ''),
+      prev: () => { if (pos > 0) this.setState({ step: onIdx[pos - 1] }); },
+      next: () => { if (pos < onIdx.length - 1) this.setState({ step: onIdx[pos + 1] }); },
+      modes: D.modes ? D.modes.map(x => ({ label: x.label, note: x.note, seq: x.seq.map((t, i) => ({ t: t, arrow: i > 0 })), cls: 'mcard' + (s.mode === x.id ? ' on' : ''), segCls: s.mode === x.id ? 'on' : '', pick: () => this.setMode(x.id) })) : [],
+      trackLabel: m ? (s.mode === 'pred' ? 'Percorso con Prediction: tutti i sei passaggi' : 'Percorso con Planning diretto: dalla baseline agli obiettivi, senza generare un nuovo forecast (passaggi 2 e 3 non previsti)') : '',
+      seq: m ? m.seq.map((t, i) => ({ t: t, arrow: i > 0 })) : [],
+      modeNote: m ? m.note : '',
+      menuGdd: s.menu === 'gdd', menuTp: s.menu === 'tp', menuSol: s.menu === 'sol',
+      gddCls: s.menu === 'gdd' ? 'on' : '', tpCls: s.menu === 'tp' ? 'on' : '',
+      enterGdd: () => this.openMenu('gdd'), enterTp: () => this.openMenu('tp'), enterSol: () => this.openMenu('sol'),
+      leaveMenu: () => this.closeMenuSoon(),
+      tGdd: () => this.toggleMenu('gdd'), tTp: () => this.toggleMenu('tp'), tSol: () => this.toggleMenu('sol'),
+      menuKey: (e) => { if (e && e.key === 'Escape') { clearTimeout(this._mt); this.setState({ menu: null }); } },
+      mob: s.mob, mobClosed: !s.mob, toggleMob: () => this.setState({ mob: !s.mob }),
+      msGdd: s.msub === 'gdd', msTp: s.msub === 'tp', msSol: s.msub === 'sol',
+      tMsGdd: () => this.setState({ msub: s.msub === 'gdd' ? null : 'gdd' }),
+      tMsTp: () => this.setState({ msub: s.msub === 'tp' ? null : 'tp' }),
+      tMsSol: () => this.setState({ msub: s.msub === 'sol' ? null : 'sol' }),
+      demo: s.demo, openDemo: () => this.setState({ demo: true, mob: false }), closeDemo: () => this.setState({ demo: false }),
+      showToast: !!s.toast, toast: s.toast,
+      ext: () => flash('Pagina esistente di binetwork.it: non fa parte di questo mockup.')
+    };
+  }
+}
+
+</script>
+</body>
+</html>

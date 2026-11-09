@@ -1,17 +1,10 @@
-# Horizon — GitHub Pages
+# Soluzioni AI – GitHub Pages
 
-Cartella pronta per la pubblicazione del mockup Horizon su GitHub Pages.
+Caricare il contenuto di questa cartella nella root del branch `main`.
 
-## Pubblicazione
-1. Crea un repository GitHub (ad esempio `horizon`).
-2. Carica **il contenuto di questa cartella nella radice del repository**, non la cartella contenitore.
-3. Apri **Settings → Pages**.
-4. In **Build and deployment**, seleziona **Deploy from a branch**.
-5. Scegli branch `main` e cartella `/(root)`, quindi **Save**.
-6. La pagina sarà raggiungibile su `https://TUO-UTENTE.github.io/horizon/` dopo la pubblicazione.
+Pagine:
+- `/` e `/horizon/` – Horizon
+- `/kapa/` – Kapa
+- `/itera/` – Itera
 
-## Note
-- `index.html` è il file HTML originale esportato da Claude, rinominato per GitHub Pages.
-- Mantieni `assets/`, `vendor/` e `support.js` nelle posizioni indicate.
-- Si tratta di un mockup di riferimento, non di codice di produzione.
-- Alcune risorse generate dinamicamente con percorsi `/_blob/` potrebbero non essere disponibili al di fuori dell'ambiente Claude.
+I collegamenti tra le tre pagine sono stati adattati a GitHub Pages. I link verso sezioni esterne non incluse nel pacchetto restano come nell’export originale.
