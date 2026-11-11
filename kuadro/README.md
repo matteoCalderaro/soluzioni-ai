@@ -1,4 +1,4 @@
-# Kapa — Hybrid — design reference
+# Kuadro — Pagina ufficiale — design reference
 
 This is a design mockup created in a visual design tool, exported as a
 standalone page. Treat it as a REFERENCE MOCKUP, not production code:
@@ -19,7 +19,7 @@ rather than copy wholesale.
 ## Uploaded files
 
 Images, fonts and media uploaded to the design are written once each under
-`assets/` — 6 in this export — and the exported files refer to them there. A
+`assets/` — 10 in this export — and the exported files refer to them there. A
 reference a script puts together while the page runs (for example
 `"/_blob/" + id`) is not rewritten and does not load from this folder.
 
